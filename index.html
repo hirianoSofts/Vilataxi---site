@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VilaTáxi - Escolha o seu veículo</title>
+
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilos/auth.css">
+</head>
+<body>
+    
+    <div id="auth-loader">
+    <div class="loader-spinner"></div>
+</div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png"
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" aria-label="Notificações">
+                    <i class="fi fi-rr-bell"></i>
+                </button>
+
+                <button class="user-avatar-btn" id="avatarBtn" aria-label="Abrir menu da conta" aria-expanded="false">
+                    <span class="avatar-circle">
+                        <img src="https://img.magnific.com/psd-gratuitas/ilustracao-3d-de-avatar-ou-perfil-humano_23-2150671142.jpg?semt=ais_hybrid&w=740&q=80" alt="">
+                    </span>
+                    <i class="fi fi-rr-angle-small-down avatar-caret" id="avatarCaret"></i>
+                </button>
+            </div>
+        </div>
+
+        <nav class="top-nav" id="topNav">
+
+    <a href="#" class="nav-item active" data-tab="home">
+        <span class="nav-icon">
+            <i class="fi fi-rr-home"></i>
+        </span>
+        <span>Início</span>
+    </a>
+
+    <a href="#" class="nav-item" data-tab="viagens">
+        <span class="nav-icon">
+            <i class="fi fi-rr-route"></i>
+        </span>
+        <span>Viagens</span>
+    </a>
+
+    <a href="#" class="nav-item" data-tab="alertas">
+        <span class="nav-icon">
+            <i class="fi fi-rr-search"></i>
+        </span>
+        <span>Pesquisar</span>
+    </a>
+
+    <a href="#" class="nav-item" data-tab="perfil">
+        <span class="nav-icon">
+            <i class="fi fi-rr-user"></i>
+        </span>
+        <span>Perfil</span>
+    </a>
+
+</nav>
+
+<!-- AVISO PARA UTILIZADORES IOS -->
+<div class="ios-notice">
+    <i class="fi fi-rr-mobile"></i>
+    <span>
+        Esta é uma versão em site da VilaTáxi para os usuários de iOS.
+        Se usas Android, recomendamos que baixes o app.
+    </span>
+</div>
+
+        <div class="account-panel" id="accountPanel">
+            <div class="account-panel-inner">
+                <div class="account-avatar-lg">
+                    <img src="https://img.magnific.com/psd-gratuitas/ilustracao-3d-de-avatar-ou-perfil-humano_23-2150671142.jpg?semt=ais_hybrid&w=740&q=80" alt="">
+                </div>
+                <h4 class="account-name">Isso Machava</h4>
+                <p class="account-email">isso@vilataxi.co.mz</p>
+
+                <div class="theme-selector">
+                    <span class="theme-label">Tema</span>
+                    <div class="theme-toggle" id="themeToggle">
+                        <button class="theme-option active" data-theme="light" aria-label="Tema claro">
+                            <i class="fi fi-rr-sun"></i> Claro
+                        </button>
+                        <button class="theme-option" data-theme="dark" aria-label="Tema escuro">
+                            <i class="fi fi-rr-moon"></i> Escuro
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn-logout" id="logoutBtn">
+                    <i class="fi fi-rr-sign-out-alt"></i>
+                    Sair da conta
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+    <!-- CONTEÚDO DA ABA INÍCIO -->
+    <section class="tab-content active" id="home-content">
+
+        <!-- ESCOLHA DO VEÍCULO -->
+        <section class="ride-options">
+
+            <div class="cards-list">
+
+                <div class="card-option" data-vehicle="txopela">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=300&q=80"
+                             alt="Txopela">
+                    </div>
+
+                    <div class="card-details">
+                        <div class="card-header">
+                            <h3>TXOPELA</h3>
+                            <span class="badge badge-discount">10% OFF</span>
+                        </div>
+
+                        <p class="card-desc">
+                            O clássico de três rodas, ideal para fugir do trânsito.
+                        </p>
+
+                        <div class="card-price">
+                            <span class="currency">$</span>
+                            <span class="amount">107</span>
+                            <span class="unit">mzn</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card-option" data-vehicle="eco">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=300&q=80"
+                             alt="Carro Eco">
+                    </div>
+
+                    <div class="card-details">
+                        <div class="card-header">
+                            <h3>CARRO ECO</h3>
+                            <span class="badge badge-reduced">PREÇO REDUZIDO</span>
+                        </div>
+
+                        <p class="card-desc">
+                            Viagem executiva climatizada com conforto premium.
+                        </p>
+
+                        <div class="card-price">
+                            <span class="currency">$</span>
+                            <span class="amount">175</span>
+                            <span class="unit">mzn</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card-option" data-vehicle="moto">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80"
+                             alt="Mototaxi">
+                    </div>
+
+                    <div class="card-details">
+                        <div class="card-header">
+                            <h3>MOTOTAXI</h3>
+                            <span class="badge badge-new">NOVO</span>
+                        </div>
+
+                        <p class="card-desc">
+                            Chegue ao seu destino na velocidade da luz com segurança.
+                        </p>
+
+                        <div class="card-price">
+                            <span class="currency">$</span>
+                            <span class="amount">50</span>
+                            <span class="unit">mzn</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- PROMOÇÕES -->
+        <section class="inactive-promos">
+
+            <div class="inactive-promos-header">
+                <h2>Promoções inativas</h2>
+                <span class="promos-count">3 expiradas</span>
+            </div>
+
+            <div class="promo-list">
+
+                <div class="promo-card">
+                    <div class="promo-icon">
+                        <i class="fi fi-rr-percentage"></i>
+                    </div>
+
+                    <div class="promo-info">
+                        <h4>15% OFF Carro Eco</h4>
+                        <p>Válido apenas para viagens no fim de semana.</p>
+                    </div>
+
+                    <span class="badge-expired">Expirado</span>
+                </div>
+
+
+                <div class="promo-card">
+                    <div class="promo-icon">
+                        <i class="fi fi-rr-gift"></i>
+                    </div>
+
+                    <div class="promo-info">
+                        <h4>1ª viagem grátis</h4>
+                        <p>Promoção de boas-vindas para novos utilizadores.</p>
+                    </div>
+
+                    <span class="badge-expired">Expirado</span>
+                </div>
+
+
+                <div class="promo-card">
+                    <div class="promo-icon">
+                        <i class="fi fi-rr-moon"></i>
+                    </div>
+
+                    <div class="promo-info">
+                        <h4>Tarifa noturna reduzida</h4>
+                        <p>Desconto especial entre 22h e 05h.</p>
+                    </div>
+
+                    <span class="badge-expired">Expirado</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- OUTRAS ABAS -->
+    <section class="tab-content" id="placeholder-content">
+
+        <div class="programming-page">
+
+            <div class="programming-icon">
+                <i class="fi fi-rr-settings"></i>
+            </div>
+
+            <h2 id="programming-title">Viagens</h2>
+
+            <p>
+                A aba <strong id="programming-name">Viagens</strong>
+                está em programação.
+            </p>
+
+            <span class="programming-badge">
+                Em breve
+            </span>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script type="module" src="auth.js"></script>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

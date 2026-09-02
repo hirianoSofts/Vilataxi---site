@@ -1,0 +1,750 @@
+:root {
+    --primary-green: #0C2D24;
+    --primary-green-light: #123B2E;
+    --accent-yellow: #E5B218;
+    --bg-light: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --text-dark: #1F2937;
+    --text-muted: #6B7280;
+    --border-color: #E5E7EB;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --radius-card: 22px;
+}
+
+body.dark-theme {
+    --bg-light: #10151A;
+    --card-bg: #1A2129;
+    --text-dark: #F3F4F6;
+    --text-muted: #9CA3AF;
+    --border-color: #2A323C;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+i[class^="fi-"], i[class*=" fi-"] {
+    line-height: 1;
+    display: inline-flex;
+}
+
+/* Cabeçalho — logo/avatar, menu de navegação e painel de conta, tudo agrupado e fixo no topo */
+.navbar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+body.dark-theme .navbar {
+    background: rgba(16, 21, 26, 0.92);
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 36px;
+    width: 36px;
+    border-radius: 8px;
+}
+
+body.dark-theme .logo-word strong {
+    color: var(--accent-yellow);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-icon {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-icon:hover {
+    background: var(--bg-light);
+    border-color: var(--primary-green);
+}
+
+/* Avatar do utilizador */
+.user-avatar-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 3px 8px 3px 3px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.user-avatar-btn:hover {
+    border-color: var(--primary-green);
+}
+
+.user-avatar-btn.open {
+    background: var(--bg-light);
+    border-color: var(--primary-green);
+}
+
+.avatar-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: block;
+}
+
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.avatar-caret {
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+}
+
+.user-avatar-btn.open .avatar-caret {
+    transform: rotate(180deg);
+}
+
+/* ================================
+   MENU DE NAVEGAÇÃO
+================================ */
+
+.top-nav {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: stretch;
+
+    /* As abas ocupam toda a largura */
+    justify-content: stretch;
+
+    /* Apenas separação vertical do cabeçalho */
+    border-top: 1px solid var(--border-color);
+
+    /* Padding vertical, sem padding lateral */
+    padding: 7px 0 9px;
+
+    gap: 0;
+}
+
+
+.nav-item {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    color: var(--text-muted);
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    /* praticamente sem espaço lateral */
+    padding: 3px 0;
+
+    border-radius: 12px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Ícone */
+.nav-icon {
+    width: 38px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nav-icon i {
+    font-size: 19px;
+}
+
+
+/* Aba ativa */
+.nav-item.active {
+    color: var(--primary-green);
+}
+
+
+.nav-item.active .nav-icon {
+    background: rgba(12, 45, 36, 0.10);
+    color: var(--primary-green);
+}
+
+
+body.dark-theme .nav-item.active {
+    color: var(--accent-yellow);
+}
+
+
+body.dark-theme .nav-item.active .nav-icon {
+    background: rgba(229, 178, 24, 0.12);
+    color: var(--accent-yellow);
+}
+
+
+.nav-item:active {
+    transform: scale(0.94);
+}
+
+/* ================================
+   AVISO VILATÁXI — VERSÃO IOS
+================================ */
+
+.ios-notice {
+    width: 100%;
+    background: var(--primary-green);
+    color: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 9px 16px;
+
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    text-align: center;
+}
+
+.ios-notice i {
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+body.dark-theme .ios-notice {
+    background: var(--primary-green-light);
+}
+
+
+/* ================================
+   SISTEMA DE ABAS
+================================ */
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* ================================
+   TELA "EM PROGRAMAÇÃO"
+================================ */
+
+.programming-page {
+    min-height: 55vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+}
+
+
+.programming-icon {
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary-green);
+    color: #fff;
+
+    border-radius: 22px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 8px 25px rgba(12, 45, 36, 0.18);
+}
+
+.programming-icon i {
+    font-size: 32px;
+}
+
+
+.programming-page h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+
+.programming-page p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+
+    max-width: 280px;
+}
+
+
+.programming-page p strong {
+    color: var(--text-dark);
+}
+
+
+.programming-badge {
+    margin-top: 18px;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   DESKTOP
+================================ */
+
+@media (min-width: 768px) {
+
+    .top-nav {
+        justify-content: flex-start;
+        padding: 7px 20px 10px;
+        gap: 6px;
+    }
+
+    .nav-item {
+        flex: none;
+
+        flex-direction: row;
+
+        gap: 7px;
+
+        padding: 6px 12px;
+
+        font-size: 13px;
+    }
+
+    .nav-icon {
+        width: 32px;
+        height: 28px;
+    }
+
+    .nav-icon i {
+        font-size: 17px;
+    }
+
+}
+
+/* Painel da conta (dropdown) */
+.account-panel {
+    max-height: 0;
+    overflow: hidden;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    transition: max-height 0.28s ease;
+}
+
+.account-panel.open {
+    max-height: 340px;
+}
+
+.account-panel-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.account-avatar-lg {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    margin-bottom: 10px;
+}
+
+.account-avatar-lg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.account-name {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.account-email {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    margin-bottom: 18px;
+}
+
+.theme-selector {
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 16px;
+}
+
+.theme-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.theme-toggle {
+    display: flex;
+    background: var(--bg-light);
+    border-radius: 14px;
+    padding: 4px;
+    gap: 4px;
+}
+
+.theme-option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    padding: 9px 0;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.theme-option.active {
+    background: var(--card-bg);
+    color: var(--primary-green);
+    box-shadow: var(--shadow-sm);
+}
+
+body.dark-theme .theme-option.active {
+    color: var(--accent-yellow);
+}
+
+.btn-logout {
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid #E9A0A0;
+    color: #C0392B;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 11px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.btn-logout:hover {
+    background: rgba(192, 57, 43, 0.08);
+}
+
+/* Layout Principal */
+.container {
+    max-width: 1100px;
+    margin: 16px auto;
+    padding: 0 16px;
+}
+
+
+
+/* Escolha o veículo e Promoções inativas — sem "card" envolvente, para aproveitar toda a largura */
+.ride-options,
+.inactive-promos {
+    margin-bottom: 28px;
+}
+
+.cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-option {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 16px;
+
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    /* Sem borda inicialmente */
+    border: 2px solid transparent;
+
+    box-shadow: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Apenas o card selecionado recebe destaque */
+.card-option.active {
+    border-color: var(--primary-green);
+    box-shadow: var(--shadow-md);
+}
+
+/* Não mostrar borda apenas por passar o dedo/mouse */
+.card-option:hover {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* No desktop, ao passar o mouse, também não seleciona */
+.card-option:hover.active {
+    border-color: var(--primary-green);
+    box-shadow: var(--shadow-md);
+}
+
+.card-img {
+    width: 90px;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-details {
+    flex-grow: 1;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.card-header h3 {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.badge-discount { background-color: #1F2937; }
+.badge-reduced { background-color: #10B981; }
+.badge-new { background-color: var(--accent-yellow); color: var(--primary-green); }
+
+.card-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.card-price {
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.card-price .currency { font-size: 14px; }
+.card-price .unit { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+/* Promoções inativas */
+.inactive-promos-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.inactive-promos-header h2 {
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
+.promos-count {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.promo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.promo-card {
+    background: var(--card-bg);
+    border: 1px dashed var(--border-color);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.65;
+    filter: grayscale(35%);
+}
+
+.promo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.promo-info {
+    flex-grow: 1;
+}
+
+.promo-info h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.promo-info p {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.badge-expired {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--text-muted);
+    background: var(--bg-light);
+    padding: 3px 8px;
+    border-radius: 20px;
+    flex-shrink: 0;
+}
+
+/* Adaptação para Desktop */
+@media (min-width: 768px) {
+    .logo-word { display: inline; }
+    .top-nav { justify-content: flex-start; gap: 8px; padding: 4px 20px 12px; }
+    .nav-item { flex: none; flex-direction: row; gap: 6px; padding: 8px 16px; font-size: 13px; }
+    .nav-item i { font-size: 17px; }
+    .cards-list { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .card-option { flex-direction: column; text-align: center; padding: 24px 16px; }
+    .card-header { justify-content: center; }
+    .card-img { width: 120px; height: 90px; }
+    .promo-list { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .promo-card { flex-direction: column; text-align: center; }
+    .account-panel-inner { padding: 24px; }
+}
