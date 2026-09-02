@@ -2,23 +2,27 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebas
 
 import {
     getAuth,
+    onAuthStateChanged,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     updateProfile,
-    setPersistence,
-    browserLocalPersistence
+    signInWithRedirect,
+    getRedirectResult,
+    GoogleAuthProvider,
+    sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
     getDatabase,
     ref,
-    set
+    set,
+    get
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 
-// ======================================================
+// ==========================================
 // FIREBASE
-// ======================================================
+// ==========================================
 
 const firebaseConfig = {
     apiKey: "AIzaSyDa4I6LcvHl1iuGJtkepRxVdR-CqNLeqjY",
@@ -30,454 +34,448 @@ const firebaseConfig = {
     appId: "1:926644637193:web:75638d86c3f7430fc9b2d8"
 };
 
-
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
 const database = getDatabase(app);
 
+const googleProvider = new GoogleAuthProvider();
 
-// ======================================================
-// PERSISTÊNCIA
-// ======================================================
-
-await setPersistence(
-    auth,
-    browserLocalPersistence
-).catch(error => {
-    console.error("Erro na persistência:", error);
-});
+auth.languageCode = "pt";
 
 
-// ======================================================
+// ==========================================
 // ELEMENTOS
-// ======================================================
+// ==========================================
 
-const loginForm =
-    document.getElementById("loginForm");
+const loginForm = document.getElementById("loginForm");
+const cadastroForm = document.getElementById("cadastroForm");
 
-const cadastroForm =
-    document.getElementById("cadastroForm");
+const googleLoginBtn = document.getElementById("googleLoginBtn");
 
-
-// ======================================================
-// LOADING DOS BOTÕES
-// ======================================================
-
-function iniciarCarregamento(botao, texto) {
-
-    if (!botao) return;
-
-    botao.disabled = true;
-
-    botao.classList.add("loading");
-
-    botao.setAttribute(
-        "aria-busy",
-        "true"
-    );
-
-    botao.dataset.textoOriginal =
-        botao.innerHTML;
-
-    botao.innerHTML = `
-        <span class="auth-spinner"></span>
-        <span>${texto}</span>
-    `;
-}
+const passwordError = document.getElementById("passwordError");
 
 
-function pararCarregamento(botao) {
+// ==========================================
+// FUNÇÃO PARA MOSTRAR ERROS
+// ==========================================
 
-    if (!botao) return;
+function mostrarErro(error) {
 
-    botao.disabled = false;
+    console.error("Firebase:", error);
 
-    botao.classList.remove("loading");
-
-    botao.removeAttribute("aria-busy");
-
-    if (botao.dataset.textoOriginal) {
-
-        botao.innerHTML =
-            botao.dataset.textoOriginal;
-
-        delete botao.dataset.textoOriginal;
-    }
-}
-
-
-// ======================================================
-// FUNÇÃO DE ERRO
-// ======================================================
-
-function mensagemErro(error) {
-
-    console.error(
-        "Firebase:",
-        error.code,
-        error.message
-    );
+    let mensagem = "Não foi possível concluir a operação.";
 
     switch (error.code) {
 
-        case "auth/invalid-credential":
-            return "E-mail ou palavra-passe incorretos.";
+        case "auth/invalid-email":
+            mensagem = "O e-mail não é válido.";
+            break;
 
         case "auth/user-not-found":
-            return "Esta conta não existe.";
+            mensagem = "Não existe uma conta com este e-mail.";
+            break;
 
         case "auth/wrong-password":
-            return "Palavra-passe incorreta.";
-
-        case "auth/invalid-email":
-            return "O e-mail informado é inválido.";
+        case "auth/invalid-credential":
+            mensagem = "E-mail ou palavra-passe incorretos.";
+            break;
 
         case "auth/email-already-in-use":
-            return "Este e-mail já está registado.";
+            mensagem = "Este e-mail já está registado.";
+            break;
 
         case "auth/weak-password":
-            return "A palavra-passe deve ter pelo menos 6 caracteres.";
+            mensagem = "A palavra-passe deve ter pelo menos 6 caracteres.";
+            break;
 
         case "auth/network-request-failed":
-            return "Sem conexão com a Internet.";
+            mensagem = "Erro de ligação. Verifique a sua internet e tente novamente.";
+            break;
 
-        case "auth/too-many-requests":
-            return "Muitas tentativas. Aguarde alguns minutos.";
+        case "auth/popup-closed-by-user":
+            mensagem = "O login Google foi cancelado.";
+            break;
+
+        case "auth/unauthorized-domain":
+            mensagem = "Este domínio não está autorizado no Firebase.";
+            break;
 
         case "auth/operation-not-allowed":
-            return "O login por e-mail ainda não está ativado no Firebase.";
+            mensagem = "Este método de login ainda não está ativado no Firebase.";
+            break;
 
-        case "auth/user-disabled":
-            return "Esta conta foi desativada.";
+        case "auth/account-exists-with-different-credential":
+            mensagem = "Este e-mail já existe usando outro método de login.";
+            break;
 
-        case "PERMISSION_DENIED":
-            return "O Firebase Database recusou a gravação.";
+        case "auth/too-many-requests":
+            mensagem = "Muitas tentativas. Aguarde alguns minutos e tente novamente.";
+            break;
 
         default:
-            return "Ocorreu um erro. Verifique o console do navegador.";
+            if (error.message) {
+                console.error(error.message);
+            }
     }
+
+    alert(mensagem);
 }
 
 
-// ======================================================
-// LOGIN
-// ======================================================
+// ==========================================
+// LOGIN COM E-MAIL
+// ==========================================
 
 if (loginForm) {
 
-    loginForm.addEventListener(
-        "submit",
-        async event => {
+    loginForm.addEventListener("submit", async (event) => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const botao =
-                loginForm.querySelector(
-                    ".btn-auth-primary"
-                );
+        const email = loginForm
+            .querySelector('[name="loginContact"]')
+            .value
+            .trim();
 
-            const formData =
-                new FormData(loginForm);
+        const password = loginForm
+            .querySelector('[name="loginPassword"]')
+            .value;
 
-            const email =
-                String(
-                    formData.get("loginContact") || ""
-                )
-                .trim()
-                .toLowerCase();
+        if (!email || !password) {
+            alert("Preencha o e-mail e a palavra-passe.");
+            return;
+        }
 
-            const password =
-                String(
-                    formData.get("loginPassword") || ""
-                );
+        const button = loginForm.querySelector(".btn-auth-primary");
 
+        if (button) {
+            button.disabled = true;
+            button.textContent = "A entrar...";
+        }
 
-            // ------------------------------
-            // VALIDAÇÃO
-            // ------------------------------
+        try {
 
-            if (!email || !password) {
-
-                alert(
-                    "Preencha o e-mail e a palavra-passe."
-                );
-
-                return;
-            }
-
-
-            // ------------------------------
-            // INICIAR LOADING
-            // ------------------------------
-
-            iniciarCarregamento(
-                botao,
-                "Entrando..."
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
             );
 
+            window.location.replace("../index.html");
 
-            try {
+        } catch (error) {
 
-                console.log(
-                    "Tentando entrar:",
-                    email
-                );
+            mostrarErro(error);
 
-
-                const credential =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-
-                console.log(
-                    "LOGIN OK:",
-                    credential.user.uid
-                );
-
-
-                // A sessão já está criada.
-                // Agora pode entrar na página principal.
-
-                window.location.replace(
-                    "../index.html"
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "ERRO LOGIN:",
-                    error
-                );
-
-
-                pararCarregamento(botao);
-
-
-                alert(
-                    mensagemErro(error)
-                );
+            if (button) {
+                button.disabled = false;
+                button.innerHTML = `
+                    Entrar
+                    <i class="fi fi-rr-arrow-right"></i>
+                `;
             }
-
         }
-    );
+
+    });
+
 }
 
 
-// ======================================================
-// CADASTRO
-// ======================================================
+// ==========================================
+// CRIAR CONTA
+// ==========================================
 
 if (cadastroForm) {
 
-    cadastroForm.addEventListener(
-        "submit",
-        async event => {
+    cadastroForm.addEventListener("submit", async (event) => {
 
-            event.preventDefault();
+        event.preventDefault();
 
+        const fullName = cadastroForm
+            .querySelector('[name="fullName"]')
+            .value
+            .trim();
 
-            const botao =
-                cadastroForm.querySelector(
-                    ".btn-auth-primary"
-                );
+        const phone = cadastroForm
+            .querySelector('[name="phone"]')
+            .value
+            .trim();
 
+        const email = cadastroForm
+            .querySelector('[name="email"]')
+            .value
+            .trim();
 
-            const formData =
-                new FormData(cadastroForm);
+        const password = cadastroForm
+            .querySelector('[name="signupPassword"]')
+            .value;
 
+        const confirmPassword = cadastroForm
+            .querySelector('[name="confirmPassword"]')
+            .value;
 
-            const nome =
-                String(
-                    formData.get("fullName") || ""
-                ).trim();
-
-
-            const telefone =
-                String(
-                    formData.get("phone") || ""
-                ).trim();
-
-
-            const email =
-                String(
-                    formData.get("email") || ""
-                )
-                .trim()
-                .toLowerCase();
+        const terms = cadastroForm
+            .querySelector('[name="terms"]')
+            .checked;
 
 
-            const password =
-                String(
-                    formData.get("signupPassword") || ""
-                );
+        // ------------------------------
+        // VALIDAÇÕES
+        // ------------------------------
 
+        if (!fullName || !phone || !email || !password || !confirmPassword) {
+            alert("Preencha todos os campos.");
+            return;
+        }
 
-            const confirmPassword =
-                String(
-                    formData.get("confirmPassword") || ""
-                );
+        if (password !== confirmPassword) {
 
-
-            // ==================================================
-            // VALIDAÇÕES
-            // ==================================================
-
-            if (!nome || !telefone || !email) {
-
-                alert(
-                    "Preencha todos os campos."
-                );
-
-                return;
+            if (passwordError) {
+                passwordError.style.display = "block";
             }
 
+            return;
+        }
 
-            if (password.length < 6) {
+        if (passwordError) {
+            passwordError.style.display = "none";
+        }
 
-                alert(
-                    "A palavra-passe deve ter pelo menos 6 caracteres."
+        if (!terms) {
+            alert("Aceite os Termos de Uso e a Política de Privacidade.");
+            return;
+        }
+
+
+        const button = cadastroForm.querySelector(".btn-auth-primary");
+
+        if (button) {
+            button.disabled = true;
+            button.textContent = "A criar conta...";
+        }
+
+
+        try {
+
+            // Criar utilizador no Firebase Authentication
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
                 );
 
-                return;
-            }
+            const user = userCredential.user;
 
 
-            if (password !== confirmPassword) {
-
-                alert(
-                    "As palavras-passe não coincidem."
-                );
-
-                return;
-            }
+            // Guardar nome no Authentication
+            await updateProfile(user, {
+                displayName: fullName
+            });
 
 
-            // ==================================================
-            // INICIAR LOADING
-            // ==================================================
-
-            iniciarCarregamento(
-                botao,
-                "Criando conta..."
+            // Guardar dados no Realtime Database
+            await set(
+                ref(database, "usuarios/" + user.uid),
+                {
+                    uid: user.uid,
+                    nome: fullName,
+                    telefone: phone,
+                    email: email,
+                    criadoEm: Date.now(),
+                    provedor: "email"
+                }
             );
 
 
-            try {
+            alert("Conta criada com sucesso!");
 
-                console.log(
-                    "Criando conta:",
-                    email
-                );
+            window.location.replace("../index.html");
 
 
-                // ==================================================
-                // 1. CRIAR CONTA NO FIREBASE AUTH
-                // ==================================================
+        } catch (error) {
 
-                const credential =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
+            mostrarErro(error);
 
+            if (button) {
 
-                const user =
-                    credential.user;
+                button.disabled = false;
 
-
-                console.log(
-                    "CONTA CRIADA NO AUTH:",
-                    user.uid
-                );
-
-
-                // ==================================================
-                // 2. GUARDAR NOME
-                // ==================================================
-
-                await updateProfile(
-                    user,
-                    {
-                        displayName: nome
-                    }
-                );
-
-
-                console.log(
-                    "Nome salvo no Authentication."
-                );
-
-
-                // ==================================================
-                // 3. GUARDAR PERFIL NO DATABASE
-                // ==================================================
-
-                try {
-
-                    await set(
-                        ref(
-                            database,
-                            "usuarios/" + user.uid
-                        ),
-                        {
-                            uid: user.uid,
-                            nome: nome,
-                            telefone: telefone,
-                            email: email,
-                            tipo: "passageiro",
-                            criadoEm: Date.now()
-                        }
-                    );
-
-
-                    console.log(
-                        "PERFIL SALVO NO DATABASE."
-                    );
-
-                } catch (databaseError) {
-
-                    console.error(
-                        "ERRO AO SALVAR PERFIL:",
-                        databaseError
-                    );
-
-                    alert(
-                        "A conta foi criada, mas não foi possível guardar alguns dados do perfil."
-                    );
-                }
-
-
-                // ==================================================
-                // 4. IR PARA O INDEX
-                // ==================================================
-
-                window.location.replace(
-                    "../index.html"
-                );
-
-            } catch (error) {
-
-                console.error(
-                    "ERRO AO CRIAR CONTA:",
-                    error
-                );
-
-
-                pararCarregamento(botao);
-
-
-                alert(
-                    mensagemErro(error)
-                );
+                button.innerHTML = `
+                    Criar conta
+                    <i class="fi fi-rr-arrow-right"></i>
+                `;
             }
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// LOGIN COM GOOGLE
+// ==========================================
+
+if (googleLoginBtn) {
+
+    googleLoginBtn.addEventListener("click", async () => {
+
+        try {
+
+            googleLoginBtn.disabled = true;
+            googleLoginBtn.textContent = "A abrir Google...";
+
+            await signInWithRedirect(
+                auth,
+                googleProvider
+            );
+
+        } catch (error) {
+
+            mostrarErro(error);
+
+            googleLoginBtn.disabled = false;
+
+            googleLoginBtn.innerHTML = `
+                <i class="fi fi-brands-google"></i>
+                Google
+            `;
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// RESULTADO DO LOGIN GOOGLE
+// ==========================================
+
+try {
+
+    const result = await getRedirectResult(auth);
+
+    if (result && result.user) {
+
+        const user = result.user;
+
+        console.log(
+            "Login Google concluído:",
+            user.email
+        );
+
+
+        // Verificar se já existe no Realtime Database
+        const userRef =
+            ref(database, "usuarios/" + user.uid);
+
+        const snapshot =
+            await get(userRef);
+
+
+        // Se for primeiro login Google,
+        // criar perfil no Database
+        if (!snapshot.exists()) {
+
+            await set(
+                userRef,
+                {
+                    uid: user.uid,
+                    nome: user.displayName || "Utilizador Google",
+                    telefone: "",
+                    email: user.email || "",
+                    foto: user.photoURL || "",
+                    criadoEm: Date.now(),
+                    provedor: "google"
+                }
+            );
 
         }
-    );
+
+
+        window.location.replace("../index.html");
     }
+
+} catch (error) {
+
+    console.error(
+        "Erro no retorno do Google:",
+        error
+    );
+
+    mostrarErro(error);
+}
+
+
+// ==========================================
+// REDIRECIONAR SE JÁ ESTIVER LOGADO
+// ==========================================
+
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+        console.log(
+            "Utilizador já autenticado:",
+            user.uid
+        );
+
+    }
+
+});
+
+
+// ==========================================
+// RECUPERAR PALAVRA-PASSE
+// ==========================================
+
+const forgotPassword =
+    document.querySelector(".auth-link--end");
+
+if (forgotPassword) {
+
+    forgotPassword.addEventListener("click", async (event) => {
+
+        event.preventDefault();
+
+        const emailInput =
+            document.querySelector('[name="loginContact"]');
+
+        const email =
+            emailInput ? emailInput.value.trim() : "";
+
+
+        if (!email) {
+
+            alert(
+                "Digite o seu e-mail primeiro."
+            );
+
+            emailInput?.focus();
+
+            return;
+        }
+
+
+        try {
+
+            await sendPasswordResetEmail(
+                auth,
+                email
+            );
+
+            alert(
+                "Enviámos um link para redefinir a sua palavra-passe."
+            );
+
+        } catch (error) {
+
+            mostrarErro(error);
+        }
+
+    });
+
+}
