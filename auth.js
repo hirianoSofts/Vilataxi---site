@@ -16,7 +16,7 @@ import {
 const firebaseConfig = {
     apiKey: "AIzaSyDa4I6LcvHl1iuGJtkepRxVdR-CqNLeqjY",
     authDomain: "vilataxi-87f20.firebaseapp.com",
-    databaseURL: "vilataxi-87f20-default-rtdb.europe-west1.firebasedatabase.app/",
+    databaseURL: "https://vilataxi-87f20-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "vilataxi-87f20",
     storageBucket: "vilataxi-87f20.firebasestorage.app",
     messagingSenderId: "926644637193",
@@ -40,11 +40,24 @@ const accountName =
 const accountEmail =
     document.querySelector(".account-email");
 
+const accountAvatar =
+    document.querySelector(".account-avatar-lg img");
+
+const headerAvatar =
+    document.querySelector(".avatar-circle img");
+
+
+// IMPORTANTE:
+// O HTML usa "logoutbtn", não "logoutBtn".
 const logoutBtn =
-    document.getElementById("logoutBtn");
+    document.getElementById("logoutbtn");
 
 
-onAuthStateChanged(auth, async user => {
+// ==========================================
+// AUTENTICAÇÃO
+// ==========================================
+
+onAuthStateChanged(auth, async (user) => {
 
     console.log(
         "Estado da autenticação:",
@@ -52,9 +65,9 @@ onAuthStateChanged(auth, async user => {
     );
 
 
-    // ==========================================
+    // ======================================
     // NÃO AUTENTICADO
-    // ==========================================
+    // ======================================
 
     if (!user) {
 
@@ -66,9 +79,9 @@ onAuthStateChanged(auth, async user => {
     }
 
 
-    // ==========================================
-    // DADOS DO AUTH
-    // ==========================================
+    // ======================================
+    // DADOS DO FIREBASE AUTH
+    // ======================================
 
     if (accountName) {
 
@@ -84,9 +97,22 @@ onAuthStateChanged(auth, async user => {
     }
 
 
-    // ==========================================
-    // DADOS DO DATABASE
-    // ==========================================
+    // Foto do Google
+    if (user.photoURL) {
+
+        if (accountAvatar) {
+            accountAvatar.src = user.photoURL;
+        }
+
+        if (headerAvatar) {
+            headerAvatar.src = user.photoURL;
+        }
+    }
+
+
+    // ======================================
+    // DADOS DO REALTIME DATABASE
+    // ======================================
 
     try {
 
@@ -118,6 +144,18 @@ onAuthStateChanged(auth, async user => {
                     dados.email;
             }
 
+
+            if (dados.foto) {
+
+                if (accountAvatar) {
+                    accountAvatar.src = dados.foto;
+                }
+
+                if (headerAvatar) {
+                    headerAvatar.src = dados.foto;
+                }
+            }
+
         }
 
     } catch (error) {
@@ -129,9 +167,9 @@ onAuthStateChanged(auth, async user => {
     }
 
 
-    // ==========================================
+    // ======================================
     // ESCONDER LOADER
-    // ==========================================
+    // ======================================
 
     if (loader) {
 
@@ -139,9 +177,7 @@ onAuthStateChanged(auth, async user => {
 
         setTimeout(() => {
 
-            if (loader) {
-                loader.remove();
-            }
+            loader.remove();
 
         }, 300);
     }
@@ -181,4 +217,5 @@ if (logoutBtn) {
 
         }
     );
+
 }
