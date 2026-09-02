@@ -30,6 +30,31 @@ const firebaseConfig = {
     appId: "1:926644637193:web:75638d86c3f7430fc9b2d8"
 };
 
+fetch(
+    "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
+    firebaseConfig.apiKey,
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: "teste-diagnostico@exemplo.com",
+            password: "123456",
+            returnSecureToken: true
+        })
+    }
+)
+.then(async response => {
+    const data = await response.json();
+
+    console.log("STATUS FIREBASE AUTH:", response.status);
+    console.log("RESPOSTA FIREBASE AUTH:", data);
+})
+.catch(error => {
+    console.error("FALHA REAL DE REDE:", error);
+});
+
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
@@ -115,6 +140,8 @@ if (loginForm) {
     loginForm.addEventListener("submit", async event => {
 
         event.preventDefault();
+        
+        const botao = loginForm.querySelector(".btn-auth-primary");
 
         const formData = new FormData(loginForm);
 
@@ -133,6 +160,8 @@ if (loginForm) {
 
             return;
         }
+        
+        iniciarCarregamento(botao, "Entrando...");
 
 
         try {
@@ -165,6 +194,8 @@ if (loginForm) {
                 "ERRO LOGIN:",
                 error
             );
+            
+            pararCarregamento(botao, "Entrar");
 
             alert(mensagemErro(error));
         }
@@ -183,6 +214,8 @@ if (cadastroForm) {
     cadastroForm.addEventListener("submit", async event => {
 
         event.preventDefault();
+        
+        const botao = cadastroForm.querySelector(".btn-auth-primary");
 
 
         const formData =
@@ -217,6 +250,8 @@ if (cadastroForm) {
 
             return;
         }
+        
+        iniciarCarregamento(botao, "Criando conta...");
 
 
         if (password.length < 6) {
@@ -344,6 +379,8 @@ if (cadastroForm) {
                 "ERRO AO CRIAR CONTA:",
                 error
             );
+            
+            pararCarregamento(botao, "Criar conta");
 
             alert(
                 mensagemErro(error)
@@ -353,3 +390,23 @@ if (cadastroForm) {
     });
 
 }
+
+function iniciarCarregamento(botao, texto) {
+    botao.disabled = true;
+    botao.classList.add("loading");
+
+    botao.innerHTML = `
+        <span class="auth-spinner"></span>
+        <span>${texto}</span>
+    `;
+}
+
+function pararCarregamento(botao, textoOriginal) {
+    botao.disabled = false;
+    botao.classList.remove("loading");
+
+    botao.innerHTML = `
+        ${textoOriginal}
+        <i class="fi fi-rr-arrow-right"></i>
+    `;
+    }
