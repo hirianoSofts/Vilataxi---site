@@ -358,3 +358,29 @@ body.dark-theme .auth-switch-link { color: var(--accent-yellow); }
 @media (min-width: 480px) {
     .auth-card { padding: 34px 32px; }
 }
+
+/* ======================================================
+   ESTADO DE CARREGAMENTO DOS BOTÕES
+   ====================================================== */
+
+.btn-auth-primary.loading {
+    cursor: wait;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.btn-auth-primary.loading .auth-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: authSpin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes authSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
