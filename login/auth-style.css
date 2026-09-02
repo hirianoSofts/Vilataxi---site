@@ -1,0 +1,360 @@
+:root {
+    --primary-green: #0C2D24;
+    --primary-green-light: #123B2E;
+    --accent-yellow: #E5B218;
+    --bg-light: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --text-dark: #1F2937;
+    --text-muted: #6B7280;
+    --border-color: #E5E7EB;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --radius-card: 22px;
+}
+
+body.dark-theme {
+    --bg-light: #10151A;
+    --card-bg: #1A2129;
+    --text-dark: #F3F4F6;
+    --text-muted: #9CA3AF;
+    --border-color: #2A323C;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+i[class^="fi-"], i[class*=" fi-"] {
+    line-height: 1;
+    display: inline-flex;
+}
+
+/* Botão de alternar tema, fixo no canto */
+.theme-toggle-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-dark);
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tela de autenticação */
+.auth-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    background:
+        radial-gradient(circle at 15% -10%, rgba(229, 178, 24, 0.18), transparent 45%),
+        radial-gradient(circle at 100% 110%, rgba(12, 45, 36, 0.12), transparent 40%);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-md);
+}
+
+/* Marca */
+.auth-brand {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.auth-brand .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    background: linear-gradient(145deg, var(--primary-green), var(--primary-green-light));
+    color: #fff;
+    font-weight: 900;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(12, 45, 36, 0.25);
+    margin-bottom: 10px;
+}
+
+.auth-brand h1 {
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.auth-brand h1 strong {
+    color: var(--primary-green);
+}
+
+body.dark-theme .auth-brand h1 strong {
+    color: var(--accent-yellow);
+}
+
+.auth-tagline {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* Alternador Entrar / Criar conta (mesmo padrão do seletor de tema do app) */
+.auth-tabs {
+    display: flex;
+    background: var(--bg-light);
+    border-radius: 14px;
+    padding: 4px;
+    gap: 4px;
+    margin-bottom: 22px;
+}
+
+.auth-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.auth-tab.active {
+    background: var(--card-bg);
+    color: var(--primary-green);
+    box-shadow: var(--shadow-sm);
+}
+
+body.dark-theme .auth-tab.active {
+    color: var(--accent-yellow);
+}
+
+/* Formulários */
+.auth-form {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.auth-form.active {
+    display: flex;
+}
+
+.field-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 12px 16px;
+    transition: border-color 0.15s ease;
+}
+
+.field-group:focus-within {
+    border-color: var(--primary-green);
+}
+
+.field-group > i:first-child {
+    color: var(--text-muted);
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.field-group input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 13px;
+    color: var(--text-dark);
+    font-family: inherit;
+    min-width: 0;
+}
+
+.field-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.field-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.field-error {
+    display: none;
+    font-size: 11px;
+    color: #C0392B;
+    margin-top: -6px;
+}
+
+.field-error.visible {
+    display: block;
+}
+
+.auth-link {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-green);
+    text-decoration: none;
+    margin-top: -4px;
+}
+
+body.dark-theme .auth-link { color: var(--accent-yellow); }
+
+.auth-link--end {
+    text-align: right;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.checkbox-row input {
+    margin-top: 2px;
+    accent-color: var(--primary-green);
+}
+
+.checkbox-row a {
+    color: var(--primary-green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+body.dark-theme .checkbox-row a { color: var(--accent-yellow); }
+
+/* Botão principal, mesmo gradiente usado no botão de pesquisa do app */
+.btn-auth-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(145deg, var(--primary-green), var(--primary-green-light));
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 13px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(12, 45, 36, 0.25);
+    transition: transform 0.15s ease;
+}
+
+.btn-auth-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-auth-primary i {
+    font-size: 14px;
+}
+
+/* Divisor "ou continue com" */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 11px;
+    gap: 10px;
+    margin: 2px 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+/* Login social */
+.social-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-social {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 11px 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+}
+
+.btn-social:hover {
+    border-color: var(--primary-green);
+}
+
+.btn-social i {
+    font-size: 15px;
+}
+
+/* Rodapé de troca entre formulários */
+.auth-switch {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.auth-switch-link {
+    background: transparent;
+    border: none;
+    color: var(--primary-green);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+body.dark-theme .auth-switch-link { color: var(--accent-yellow); }
+
+@media (min-width: 480px) {
+    .auth-card { padding: 34px 32px; }
+}
