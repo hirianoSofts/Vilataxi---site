@@ -16,7 +16,7 @@ import {
 const firebaseConfig = {
     apiKey: "AIzaSyDa4I6LcvHl1iuGJtkepRxVdR-CqNLeqjY",
     authDomain: "vilataxi-87f20.firebaseapp.com",
-    databaseURL: "https://vilataxi-87f20-default-rtdb.europe-west1.firebasedatabase.app/",
+    databaseURL: "vilataxi-87f20-default-rtdb.europe-west1.firebasedatabase.app/",
     projectId: "vilataxi-87f20",
     storageBucket: "vilataxi-87f20.firebasestorage.app",
     messagingSenderId: "926644637193",
