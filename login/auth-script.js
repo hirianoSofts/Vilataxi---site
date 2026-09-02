@@ -40,33 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Validação simples do formulário de login
-    const loginForm = document.getElementById('loginForm');
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Aqui entra a lógica real de autenticação
-        console.log('Entrar:', Object.fromEntries(new FormData(loginForm)));
-    });
+   
 
-    // Validação do formulário de cadastro (confirmação de palavra-passe)
-    const cadastroForm = document.getElementById('cadastroForm');
-    const passwordError = document.getElementById('passwordError');
-
-    cadastroForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const password = cadastroForm.querySelector('[name="signupPassword"]').value;
-        const confirm = cadastroForm.querySelector('[name="confirmPassword"]').value;
-
-        if (password !== confirm) {
-            passwordError.classList.add('visible');
-            return;
-        }
-
-        passwordError.classList.remove('visible');
-        // Aqui entra a lógica real de criação de conta
-        console.log('Criar conta:', Object.fromEntries(new FormData(cadastroForm)));
-    });
 
     // Alternar tema claro/escuro
     const themeToggleBtn = document.getElementById('themeToggleBtn');
