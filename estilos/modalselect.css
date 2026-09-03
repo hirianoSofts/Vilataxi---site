@@ -1,0 +1,370 @@
+/* ==========================================
+   BOTTOM SHEET — TRANSPORTE
+========================================== */
+
+.transport-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.transport-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Bottom Sheet */
+
+.transport-bottom-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 1000;
+
+    background: var(--card-bg);
+
+    border-radius: 24px 24px 0 0;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    transform: translateY(100%);
+
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.transport-bottom-sheet.open {
+    transform: translateY(0);
+}
+
+
+/* Alça */
+
+.sheet-handle {
+    width: 42px;
+    height: 5px;
+
+    border-radius: 10px;
+
+    background: var(--border-color);
+
+    margin: 10px auto 4px;
+}
+
+
+/* Conteúdo */
+
+.sheet-content {
+    padding: 14px 20px 24px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+
+/* Veículo */
+
+.sheet-vehicle {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 16px;
+}
+
+.sheet-vehicle img {
+    width: 72px;
+    height: 72px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    background: var(--bg-light);
+}
+
+.sheet-vehicle-info {
+    flex: 1;
+}
+
+.sheet-vehicle-info h2 {
+    font-size: 20px;
+    font-weight: 900;
+
+    margin-bottom: 7px;
+}
+
+
+/* Descrição */
+
+.sheet-description {
+    background: var(--bg-light);
+
+    border-radius: 14px;
+
+    padding: 13px 14px;
+
+    margin-bottom: 12px;
+}
+
+.sheet-description p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+
+/* Preço */
+
+.sheet-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 2px;
+
+    border-bottom: 1px solid var(--border-color);
+
+    margin-bottom: 20px;
+}
+
+.sheet-price span {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.sheet-price strong {
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.sheet-price small {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+
+/* Pergunta */
+
+.sheet-question {
+    margin-bottom: 14px;
+}
+
+.sheet-question h3 {
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 4px;
+}
+
+.sheet-question p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+
+/* Botões */
+
+.sheet-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.sheet-btn {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 14px;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+.sheet-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* Ícone principal */
+
+.sheet-btn > i:first-child {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+
+/* Texto */
+
+.sheet-btn span {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.sheet-btn strong {
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.sheet-btn small {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+
+/* Seta */
+
+.sheet-btn > i:last-child {
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
+
+/* WhatsApp */
+
+.whatsapp-btn {
+    background: #eaf8ef;
+    border: 1px solid #ccebd7;
+    color: #16813a;
+}
+
+.whatsapp-btn > i:first-child {
+    background: #d5f1df;
+    color: #16813a;
+}
+
+
+/* Site */
+
+.website-btn {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+}
+
+.website-btn > i:first-child {
+    background: var(--card-bg);
+    color: var(--primary-green);
+}
+
+
+/* Cancelar */
+
+.sheet-cancel {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+}
+
+.sheet-cancel:active {
+    background: var(--bg-light);
+}
+
+
+/* Desktop */
+
+@media (min-width: 768px) {
+
+    .transport-bottom-sheet {
+        left: 50%;
+        right: auto;
+        bottom: 20px;
+
+        width: min(620px, calc(100% - 40px));
+
+        border-radius: 24px;
+
+        transform: translate(-50%, calc(100% + 40px));
+    }
+
+    .transport-bottom-sheet.open {
+        transform: translate(-50%, 0);
+    }
+
+}
+
+/* ==========================================
+   LOADING — CONTINUAR PELO SITE
+========================================== */
+
+.website-btn:disabled {
+    opacity: 0.75;
+    cursor: wait;
+}
+
+.site-loading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.site-spinner {
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    border: 3px solid rgba(12, 45, 36, 0.15);
+    border-top-color: var(--primary-green);
+
+    border-radius: 50%;
+
+    animation: siteSpinner 0.7s linear infinite;
+}
+
+@keyframes siteSpinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
