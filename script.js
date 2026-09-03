@@ -197,18 +197,6 @@ continueWebsite.addEventListener('click', () => {
 
 });
 
-    // Navegação (menu logo abaixo do cabeçalho)
-    const navItems = document.querySelectorAll('.nav-item');
-
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            navItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-        });
-    });
-
-
-
     // Painel da conta (avatar no cabeçalho)
     const avatarBtn = document.getElementById('avatarBtn');
     const accountPanel = document.getElementById('accountPanel');
@@ -253,75 +241,4 @@ continueWebsite.addEventListener('click', () => {
         // Aqui entra a lógica real de logout (ex: limpar sessão e redirecionar)
         closeAccountPanel();
     });
-});
-
-
-/* ==========================================
-   SISTEMA DE NAVEGAÇÃO POR ABAS
-========================================== */
-
-const navItems = document.querySelectorAll('.nav-item');
-
-const homeContent = document.getElementById('home-content');
-const placeholderContent = document.getElementById('placeholder-content');
-
-const programmingTitle = document.getElementById('programming-title');
-const programmingName = document.getElementById('programming-name');
-
-
-navItems.forEach(item => {
-
-    item.addEventListener('click', function(event) {
-
-        event.preventDefault();
-
-        const tab = this.dataset.tab;
-
-
-        // Remove estado ativo de todas as abas
-        navItems.forEach(nav => {
-            nav.classList.remove('active');
-        });
-
-
-        // Ativa a aba clicada
-        this.classList.add('active');
-
-
-        // ==============================
-        // HOME
-        // ==============================
-
-        if (tab === 'home') {
-
-            homeContent.classList.add('active');
-            placeholderContent.classList.remove('active');
-
-            return;
-        }
-
-
-        // ==============================
-        // OUTRAS ABAS
-        // ==============================
-
-        homeContent.classList.remove('active');
-        placeholderContent.classList.add('active');
-
-
-        const tabNames = {
-            viagens: 'Viagens',
-            alertas: 'Alertas',
-            perfil: 'Perfil'
-        };
-
-
-        const name = tabNames[tab] || 'Esta aba';
-
-
-        programmingTitle.textContent = name;
-        programmingName.textContent = name;
-
-    });
-
 });
