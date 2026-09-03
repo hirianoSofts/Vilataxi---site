@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="estilos/auth.css">
     <link rel="stylesheet" href="estilos/modalselect.css">
+    <link rel="stylesheet" href="estilos/footer.css">
+    <link rel="stylesheet" href="estilos/cookies.css">
 </head>
 <body>
     
@@ -40,38 +42,6 @@
                 </button>
             </div>
         </div>
-
-        <nav class="top-nav" id="topNav">
-
-    <a href="#" class="nav-item active" data-tab="home">
-        <span class="nav-icon">
-            <i class="fi fi-rr-home"></i>
-        </span>
-        <span>Início</span>
-    </a>
-
-    <a href="#" class="nav-item" data-tab="viagens">
-        <span class="nav-icon">
-            <i class="fi fi-rr-route"></i>
-        </span>
-        <span>Viagens</span>
-    </a>
-
-    <a href="#" class="nav-item" data-tab="alertas">
-        <span class="nav-icon">
-            <i class="fi fi-rr-search"></i>
-        </span>
-        <span>Pesquisar</span>
-    </a>
-
-    <a href="#" class="nav-item" data-tab="perfil">
-        <span class="nav-icon">
-            <i class="fi fi-rr-user"></i>
-        </span>
-        <span>Perfil</span>
-    </a>
-
-</nav>
 
 <!-- AVISO PARA UTILIZADORES IOS -->
 <div class="ios-notice">
@@ -112,175 +82,292 @@
 
     <main class="container">
 
-    <!-- CONTEÚDO DA ABA INÍCIO -->
-    <section class="tab-content active" id="home-content">
+    <section class="ride-options">
 
-        <!-- ESCOLHA DO VEÍCULO -->
-        <section class="ride-options">
+        <div class="cards-list">
 
-            <div class="cards-list">
-
-                <div class="card-option" data-vehicle="txopela">
-                    <div class="card-img">
-                        <img src="images/txopela.png"
-                             alt="Txopela">
-                    </div>
-
-                    <div class="card-details">
-                        <div class="card-header">
-                            <h3>TXOPELA</h3>
-                            <span class="badge badge-discount">10% OFF</span>
-                        </div>
-
-                        <p class="card-desc">
-                            O clássico de três rodas, ideal para fugir do trânsito.
-                        </p>
-
-                        <div class="card-price">
-                            <span class="currency">$</span>
-                            <span class="amount">107</span>
-                            <span class="unit">mzn</span>
-                        </div>
-                    </div>
+            <div class="card-option" data-vehicle="txopela">
+                <div class="card-img">
+                    <img src="images/txopela.png" alt="Txopela">
                 </div>
 
-
-                <div class="card-option" data-vehicle="eco">
-                    <div class="card-img">
-                        <img src="images/carro.png"
-                             alt="Carro Eco">
+                <div class="card-details">
+                    <div class="card-header">
+                        <h3>TXOPELA</h3>
+                        <span class="badge badge-discount">10% OFF</span>
                     </div>
 
-                    <div class="card-details">
-                        <div class="card-header">
-                            <h3>CARRO ECO</h3>
-                            <span class="badge badge-reduced">PREÇO REDUZIDO</span>
-                        </div>
+                    <p class="card-desc">
+                        O clássico de três rodas, ideal para fugir do trânsito.
+                    </p>
 
-                        <p class="card-desc">
-                            Viagem executiva climatizada com conforto premium.
-                        </p>
-
-                        <div class="card-price">
-                            <span class="currency">$</span>
-                            <span class="amount">175</span>
-                            <span class="unit">mzn</span>
-                        </div>
+                    <div class="card-price">
+                        <span class="currency">$</span>
+                        <span class="amount">107</span>
+                        <span class="unit">mzn</span>
                     </div>
                 </div>
-
-
-                <div class="card-option" data-vehicle="moto">
-                    <div class="card-img">
-                        <img src="images/mota.png"
-                             alt="Mototaxi">
-                    </div>
-
-                    <div class="card-details">
-                        <div class="card-header">
-                            <h3>MOTOTAXI</h3>
-                            <span class="badge badge-new">NOVO</span>
-                        </div>
-
-                        <p class="card-desc">
-                            Chegue ao seu destino na velocidade da luz com segurança.
-                        </p>
-
-                        <div class="card-price">
-                            <span class="currency">$</span>
-                            <span class="amount">50</span>
-                            <span class="unit">mzn</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- PROMOÇÕES -->
-        <section class="inactive-promos">
-
-            <div class="inactive-promos-header">
-                <h2>Promoções inativas</h2>
-                <span class="promos-count">3 expiradas</span>
             </div>
 
-            <div class="promo-list">
 
-                <div class="promo-card">
-                    <div class="promo-icon">
-                        <i class="fi fi-rr-percentage"></i>
-                    </div>
-
-                    <div class="promo-info">
-                        <h4>15% OFF Carro Eco</h4>
-                        <p>Válido apenas para viagens no fim de semana.</p>
-                    </div>
-
-                    <span class="badge-expired">Expirado</span>
+            <div class="card-option" data-vehicle="eco">
+                <div class="card-img">
+                    <img src="images/carro.png" alt="Carro Eco">
                 </div>
 
-
-                <div class="promo-card">
-                    <div class="promo-icon">
-                        <i class="fi fi-rr-gift"></i>
+                <div class="card-details">
+                    <div class="card-header">
+                        <h3>CARRO ECO</h3>
+                        <span class="badge badge-reduced">PREÇO REDUZIDO</span>
                     </div>
 
-                    <div class="promo-info">
-                        <h4>1ª viagem grátis</h4>
-                        <p>Promoção de boas-vindas para novos utilizadores.</p>
-                    </div>
+                    <p class="card-desc">
+                        Viagem executiva climatizada com conforto premium.
+                    </p>
 
-                    <span class="badge-expired">Expirado</span>
+                    <div class="card-price">
+                        <span class="currency">$</span>
+                        <span class="amount">175</span>
+                        <span class="unit">mzn</span>
+                    </div>
                 </div>
-
-
-                <div class="promo-card">
-                    <div class="promo-icon">
-                        <i class="fi fi-rr-moon"></i>
-                    </div>
-
-                    <div class="promo-info">
-                        <h4>Tarifa noturna reduzida</h4>
-                        <p>Desconto especial entre 22h e 05h.</p>
-                    </div>
-
-                    <span class="badge-expired">Expirado</span>
-                </div>
-
             </div>
 
-        </section>
 
-    </section>
+            <div class="card-option" data-vehicle="moto">
+                <div class="card-img">
+                    <img src="images/mota.png" alt="Mototaxi">
+                </div>
 
+                <div class="card-details">
+                    <div class="card-header">
+                        <h3>MOTOTAXI</h3>
+                        <span class="badge badge-new">NOVO</span>
+                    </div>
 
-    <!-- OUTRAS ABAS -->
-    <section class="tab-content" id="placeholder-content">
+                    <p class="card-desc">
+                        Chegue ao seu destino na velocidade da luz com segurança.
+                    </p>
 
-        <div class="programming-page">
-
-            <div class="programming-icon">
-                <i class="fi fi-rr-settings"></i>
+                    <div class="card-price">
+                        <span class="currency">$</span>
+                        <span class="amount">50</span>
+                        <span class="unit">mzn</span>
+                    </div>
+                </div>
             </div>
-
-            <h2 id="programming-title">Viagens</h2>
-
-            <p>
-                A aba <strong id="programming-name">Viagens</strong>
-                está em programação.
-            </p>
-
-            <span class="programming-badge">
-                Em breve
-            </span>
 
         </div>
 
     </section>
 
 </main>
+
+    <!-- ==========================================
+     FOOTER PROFISSIONAL VILATÁXI
+========================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <!-- MARCA -->
+        <div class="footer-brand">
+
+            <div class="footer-brand-logo">
+
+                <img
+                    src="https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png"
+                    alt="VilaTáxi"
+                >
+
+                <h3>VilaTáxi</h3>
+
+            </div>
+
+            <p class="footer-description">
+                Mobilidade simples, segura e acessível.
+                Encontre o transporte ideal para chegar
+                ao seu destino.
+            </p>
+
+            <div class="footer-location">
+                <i class="fi fi-rr-marker"></i>
+                <span>Vilankulo, Inhambane</span>
+            </div>
+
+            <div class="footer-social">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fi fi-brands-facebook"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fi fi-brands-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="WhatsApp">
+                    <i class="fi fi-brands-whatsapp"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="fi fi-brands-tik-tok"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- VILATÁXI -->
+        <div class="footer-column">
+
+            <h4>VilaTáxi</h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-angle-small-right"></i>
+                        Sobre nós
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-angle-small-right"></i>
+                        Como funciona
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-angle-small-right"></i>
+                        Nossos transportes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-angle-small-right"></i>
+                        Seja motorista
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- SUPORTE -->
+        <div class="footer-column">
+
+            <h4>Suporte</h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-headset"></i>
+                        Central de ajuda
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-comment"></i>
+                        Contacte-nos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-shield-check"></i>
+                        Segurança
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-bug"></i>
+                        Reportar problema
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- LEGAL -->
+        <div class="footer-column">
+
+            <h4>Legal</h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-document"></i>
+                        Termos de uso
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-lock"></i>
+                        Privacidade
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-cookie"></i>
+                        Cookies
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fi fi-rr-info"></i>
+                        Informações
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- BARRA INFERIOR -->
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 VilaTáxi. Todos os direitos reservados.
+        </span>
+
+        <div class="footer-bottom-links">
+
+            <a href="#">
+                Privacidade
+            </a>
+
+            <a href="#">
+                Termos
+            </a>
+
+            <a href="#">
+                Cookies
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
 
 <!-- ================================
      BOTTOM SHEET DO TRANSPORTE
@@ -348,9 +435,172 @@
     </div>
 </div>
 
+<!-- ==========================================
+     SISTEMA DE COOKIES — VILATÁXI
+========================================== -->
+
+<div class="cookie-banner" id="cookieBanner" aria-hidden="true">
+    <div class="cookie-banner-icon">
+        <i class="fi fi-rr-cookie"></i>
+    </div>
+
+    <div class="cookie-banner-content">
+        <h3>Privacidade e cookies</h3>
+
+        <p>
+            Usamos cookies para melhorar a sua experiência,
+            manter o site seguro e compreender como a VilaTáxi
+            é utilizada.
+        </p>
+
+        <button class="cookie-settings-link" id="openCookieSettings">
+            Personalizar cookies
+        </button>
+    </div>
+
+    <div class="cookie-banner-actions">
+        <button class="cookie-btn cookie-btn-secondary" id="rejectCookies">
+            Recusar opcionais
+        </button>
+
+        <button class="cookie-btn cookie-btn-primary" id="acceptCookies">
+            Aceitar todos
+        </button>
+    </div>
+</div>
+
+
+<!-- MODAL DE PREFERÊNCIAS -->
+
+<div class="cookie-overlay" id="cookieOverlay" aria-hidden="true"></div>
+
+<div class="cookie-modal" id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+
+    <div class="cookie-modal-header">
+        <div>
+            <span class="cookie-modal-label">
+                <i class="fi fi-rr-cookie"></i>
+                Privacidade
+            </span>
+
+            <h2 id="cookieModalTitle">Preferências de cookies</h2>
+        </div>
+
+        <button class="cookie-close" id="closeCookieSettings" aria-label="Fechar">
+            <i class="fi fi-rr-cross"></i>
+        </button>
+    </div>
+
+
+    <div class="cookie-modal-body">
+
+        <p class="cookie-modal-intro">
+            Escolha quais tipos de cookies deseja permitir.
+            Os cookies essenciais não podem ser desativados,
+            pois são necessários para o funcionamento do site.
+        </p>
+
+
+        <!-- ESSENCIAIS -->
+
+        <div class="cookie-category">
+
+            <div class="cookie-category-info">
+                <div class="cookie-category-icon">
+                    <i class="fi fi-rr-shield-check"></i>
+                </div>
+
+                <div>
+                    <h4>Essenciais</h4>
+
+                    <p>
+                        Necessários para segurança, autenticação
+                        e funcionamento básico da VilaTáxi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cookie-status">
+                Sempre ativos
+            </div>
+
+        </div>
+
+
+        <!-- PREFERÊNCIAS -->
+
+        <div class="cookie-category">
+
+            <div class="cookie-category-info">
+                <div class="cookie-category-icon">
+                    <i class="fi fi-rr-settings"></i>
+                </div>
+
+                <div>
+                    <h4>Preferências</h4>
+
+                    <p>
+                        Guardam opções como tema, idioma e
+                        outras preferências da sua experiência.
+                    </p>
+                </div>
+            </div>
+
+            <label class="cookie-switch">
+                <input type="checkbox" id="preferencesCookies">
+                <span></span>
+            </label>
+
+        </div>
+
+
+        <!-- ANALYTICS -->
+
+        <div class="cookie-category">
+
+            <div class="cookie-category-info">
+                <div class="cookie-category-icon">
+                    <i class="fi fi-rr-chart-histogram"></i>
+                </div>
+
+                <div>
+                    <h4>Analytics</h4>
+
+                    <p>
+                        Ajuda-nos a compreender como o site é
+                        utilizado para melhorar os nossos serviços.
+                    </p>
+                </div>
+            </div>
+
+            <label class="cookie-switch">
+                <input type="checkbox" id="analyticsCookies">
+                <span></span>
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <div class="cookie-modal-footer">
+
+        <a href="#" class="cookie-policy-link">
+            Política de Cookies
+        </a>
+
+        <button class="cookie-save" id="saveCookiePreferences">
+            Guardar preferências
+        </button>
+
+    </div>
+
+</div>
+
 <script type="module" src="auth.js"></script>
 
     <script src="script.js"></script>
+    <script src="scripts/cookies.js"></script>
     
 </body>
 </html>
