@@ -1,0 +1,391 @@
+/* ==========================================
+   FOOTER PROFISSIONAL — VILATÁXI
+========================================== */
+
+.site-footer {
+    position: relative;
+
+    margin-top: 60px;
+    padding: 25px 25px 0;
+
+    background: var(--primary-green);
+
+    color: #ffffff;
+    border-radius: 26px 26px 0 0;
+
+    overflow: hidden;
+}
+
+
+/* Detalhe decorativo superior */
+
+.site-footer::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: var(--accent-yellow);
+}
+
+
+/* ==========================================
+   CONTEÚDO PRINCIPAL
+========================================== */
+
+.footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+
+    gap: 45px;
+
+    padding-bottom: 42px;
+}
+
+
+/* ==========================================
+   MARCA
+========================================== */
+
+.footer-brand {
+    display: block;
+}
+
+.footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 16px;
+}
+
+.footer-brand-logo img {
+    width: 46px;
+    height: 46px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    padding: 3px;
+}
+
+.footer-brand-logo h3 {
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+}
+
+.footer-description {
+    max-width: 270px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   LOCALIZAÇÃO
+========================================== */
+
+.footer-location {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 11px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 9px;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 11px;
+}
+
+.footer-location i {
+    color: var(--accent-yellow);
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   COLUNAS
+========================================== */
+
+.footer-column h4 {
+    margin-bottom: 16px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+.footer-column ul {
+    list-style: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+}
+
+.footer-column a {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: var(--accent-yellow);
+
+    transform: translateX(3px);
+}
+
+.footer-column a i {
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   REDES SOCIAIS
+========================================== */
+
+.footer-social {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+.footer-social a {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.09);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: rgba(255, 255, 255, 0.75);
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer-social a:hover {
+    background: var(--accent-yellow);
+
+    color: var(--primary-green);
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   BARRA INFERIOR
+========================================== */
+
+.footer-bottom {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    min-height: 62px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+
+    color: rgba(255, 255, 255, 0.48);
+
+    font-size: 10px;
+}
+
+.footer-bottom-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.footer-bottom-links a {
+    color: rgba(255, 255, 255, 0.48);
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: var(--accent-yellow);
+}
+
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark-theme .site-footer {
+    background: #081F19;
+}
+
+body.dark-theme .footer-brand-logo img {
+    background: #ffffff;
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 850px) {
+
+    .footer-inner {
+        grid-template-columns: 1.5fr 1fr 1fr;
+
+        gap: 30px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .site-footer {
+        margin-top: 45px;
+
+        padding: 40px 20px 0;
+
+        border-radius: 0;
+    }
+
+    .footer-inner {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 32px 22px;
+
+        padding-bottom: 30px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-description {
+        max-width: 320px;
+    }
+
+    .footer-column h4 {
+        margin-bottom: 13px;
+    }
+
+    .footer-bottom {
+        min-height: auto;
+
+        padding: 18px 0;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .footer-bottom-links {
+        gap: 14px;
+
+        flex-wrap: wrap;
+    }
+}
+
+
+/* ==========================================
+   MOBILE MUITO PEQUENO
+========================================== */
+
+@media (max-width: 380px) {
+
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-column a {
+        font-size: 11px;
+    }
+
+    .footer-bottom {
+        font-size: 9px;
+    }
+}
