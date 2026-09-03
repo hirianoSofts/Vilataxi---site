@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>VilaTáxi - Pedir viagem</title>
+
+    <!-- Satoshi -->
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Flaticon -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css"
+    >
+
+    <!-- Mapbox -->
+    <link
+        href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="pedirviagem.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="../index.html"
+                class="logo"
+            >
+
+                <img
+                    src="https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png"
+                    alt="VilaTáxi"
+                >
+
+            </a>
+
+
+            <a
+                href="https://wa.me/"
+                class="whatsapp-button"
+                target="_blank"
+                rel="noopener"
+                aria-label="WhatsApp VilaTáxi"
+            >
+
+                <i class="fi fi-brands-whatsapp"></i>
+
+                <span>WhatsApp</span>
+
+            </a>
+
+        </div>
+
+
+        <!-- ======================================
+             AVISO IOS
+        ====================================== -->
+
+        <div
+            class="ios-notice"
+            id="iosNotice"
+        >
+
+            <i class="fi fi-rr-mobile"></i>
+
+            <span>
+                Esta é uma versão em site da VilaTáxi para usuários de iOS.
+                Se usas Android, recomendamos que baixes o app.
+            </span>
+
+
+            <button
+                id="closeIosNotice"
+                class="close-notice"
+                aria-label="Fechar aviso"
+            >
+
+                <i class="fi fi-rr-cross-small"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         MAPA
+    ========================================== -->
+
+    <main class="map-screen">
+
+        <div
+            id="map"
+            class="map"
+        ></div>
+
+
+        <!-- Botão localização -->
+
+        <button
+            id="locationButton"
+            class="location-button"
+            aria-label="Minha localização"
+        >
+
+            <i class="fi fi-rr-crosshairs"></i>
+
+        </button>
+
+
+        <!-- ======================================
+             BOTTOM SHEET
+        ====================================== -->
+
+        <section
+            class="ride-sheet"
+            id="rideSheet"
+        >
+
+            <!-- ==================================
+                 CABEÇALHO
+            ================================== -->
+
+            <div class="sheet-header">
+
+                <div>
+
+                    <span class="sheet-label">
+                        NOVA VIAGEM
+                    </span>
+
+                    <h1>
+                        Para onde vamos?
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 TRANSPORTE
+            ================================== -->
+
+            <div class="vehicle-card">
+
+                <img
+                    id="vehicleImage"
+                    class="vehicle-image"
+                    src=""
+                    alt="Transporte"
+                >
+
+
+                <div class="vehicle-info">
+
+                    <span class="vehicle-label">
+                        TRANSPORTE
+                    </span>
+
+                    <h2 id="vehicleName">
+                        —
+                    </h2>
+
+                    <p id="vehicleDescription">
+                        —
+                    </p>
+
+                </div>
+
+
+                <div class="vehicle-price">
+
+                    <span>
+                        A partir de
+                    </span>
+
+                    <strong>
+
+                        <span id="vehiclePrice">
+                            —
+                        </span>
+
+                        MZN
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 LOCALIZAÇÕES
+            ================================== -->
+
+            <div class="locations">
+
+                <!-- Origem -->
+
+                <button
+                    class="location-row location-selector active"
+                    id="originSelector"
+                    type="button"
+                >
+
+                    <div class="location-symbol origin-symbol">
+
+                        <i class="fi fi-rr-circle"></i>
+
+                    </div>
+
+
+                    <div class="location-content">
+
+                        <span>
+                            ORIGEM
+                        </span>
+
+                        <strong id="pickupLocation">
+                            A obter localização...
+                        </strong>
+
+                    </div>
+
+                </button>
+
+
+                <div class="location-line"></div>
+
+
+                <!-- Destino -->
+
+                <button
+                    class="location-row location-selector"
+                    id="destinationSelector"
+                    type="button"
+                >
+
+                    <div class="location-symbol destination-symbol">
+
+                        <i class="fi fi-rr-marker"></i>
+
+                    </div>
+
+
+                    <div class="location-content">
+
+                        <span>
+                            DESTINO
+                        </span>
+
+                        <strong id="destinationLocation">
+                            Toque para escolher
+                        </strong>
+
+                    </div>
+
+
+                    <i class="fi fi-rr-angle-small-right destination-arrow"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- ==================================
+                 RESUMO AVANÇADO
+            ================================== -->
+
+            <div
+                class="trip-summary"
+                id="tripSummary"
+            >
+
+                <div class="summary-item">
+
+                    <i class="fi fi-rr-route"></i>
+
+                    <div>
+
+                        <span>
+                            Distância
+                        </span>
+
+                        <strong id="tripDistance">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-item">
+
+                    <i class="fi fi-rr-clock"></i>
+
+                    <div>
+
+                        <span>
+                            Tempo
+                        </span>
+
+                        <strong id="tripTime">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-item">
+
+                    <i class="fi fi-rr-money"></i>
+
+                    <div>
+
+                        <span>
+                            Estimado
+                        </span>
+
+                        <strong id="tripPrice">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 AÇÕES INFERIORES
+            ================================== -->
+
+            <div class="bottom-actions">
+
+                <button
+                    id="expandTrip"
+                    class="plus-button"
+                    type="button"
+                    aria-label="Mostrar detalhes da viagem"
+                >
+
+                    <i class="fi fi-rr-plus"></i>
+
+                </button>
+
+
+                <button
+                    class="request-button"
+                    id="requestRide"
+                    type="button"
+                    disabled
+                >
+
+                    <span>
+                        Escolher destino
+                    </span>
+
+                    <i class="fi fi-rr-arrow-small-right"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Mapbox -->
+
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"
+    ></script>
+
+
+    <!-- JavaScript -->
+
+    <script
+        src="pedirviagem.js"
+    ></script>
+
+</body>
+</html>
