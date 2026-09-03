@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================
-       DADOS DOS TRANSPORTES
+       DADOS DAS CATEGORIAS
     ========================================== */
 
     const transportData = {
@@ -10,12 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             name: 'TXOPELA',
 
-            image: '../images/txopela.png',
-
             description:
-                'O clássico de três rodas, ideal para fugir do trânsito.',
+                'Motoristas de txopela disponíveis na sua região.',
 
-            price: 107
+            icon:
+                'fi fi-rr-car-side'
 
         },
 
@@ -24,12 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             name: 'CARRO ECO',
 
-            image: '../images/carro.png',
-
             description:
-                'Viagem confortável e climatizada para um trajeto tranquilo.',
+                'Motoristas de carro disponíveis na sua região.',
 
-            price: 175
+            icon:
+                'fi fi-rr-car'
 
         },
 
@@ -38,12 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             name: 'MOTOTAXI',
 
-            image: '../images/mota.png',
-
             description:
-                'Uma opção rápida e prática para chegar ao seu destino.',
+                'Mototaxistas disponíveis na sua região.',
 
-            price: 50
+            icon:
+                'fi fi-rr-motorcycle'
 
         }
 
@@ -51,7 +48,151 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       TRANSPORTE SELECIONADO
+       MOTORISTAS DE EXEMPLO
+       
+       Estes dados serão posteriormente
+       substituídos pelos dados do Firebase.
+    ========================================== */
+
+    const drivers = [
+
+        {
+            id: 1,
+
+            name: 'Carlos Mucavele',
+
+            phone: '258859123456',
+
+            avatar:
+                'https://i.pravatar.cc/150?img=12',
+
+            category:
+                'txopela',
+
+            online:
+                true
+
+        },
+
+
+        {
+            id: 2,
+
+            name: 'João Vilanculos',
+
+            phone: '258841234562',
+
+            avatar:
+                'https://i.pravatar.cc/150?img=11',
+
+            category:
+                'txopela',
+
+            online:
+                true
+
+        },
+
+
+        {
+            id: 3,
+
+            name: 'Manuel Chivambo',
+
+            phone: '258861234572',
+
+            avatar:
+                'https://i.pravatar.cc/150?img=33',
+
+            category:
+                'txopela',
+
+            online:
+                true
+
+        },
+
+
+        {
+            id: 4,
+
+            name: 'António Macamo',
+
+            phone: '258871234582',
+
+            avatar:
+                'https://i.pravatar.cc/150?img=51',
+
+            category:
+                'eco',
+
+            online:
+                true
+
+        },
+
+
+        {
+            id: 5,
+
+            name: 'Fernando Matsinhe',
+
+            phone: '258821234592',
+
+            avatar:
+                'https://i.pravatar.cc/150?img=68',
+
+            category:
+                'eco',
+
+            online:
+                true
+
+        },
+
+
+        {
+            id: 6,
+
+            name: 'Edson Nhancale',
+
+            phone: '258851234562',
+
+            avatar:
+                'https://i.pravatar.cc/150?img=59',
+
+            category:
+                'moto',
+
+            online:
+                true
+
+        },
+
+
+        {
+            id: 7,
+
+            name: 'Nelson Chongo',
+
+            phone: '258841234572',
+
+            avatar:
+                'https://i.pravatar.cc/150?img=14',
+
+            category:
+                'moto',
+
+            online:
+                true
+
+        }
+
+    ];
+
+
+    /* ==========================================
+       OBTER CATEGORIA DA URL
     ========================================== */
 
     const params =
@@ -60,102 +201,101 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
 
-    const vehicle =
+    const selectedTransport =
         params.get('transporte') ||
         'txopela';
 
 
-    const data =
-        transportData[vehicle] ||
+    const category =
+        transportData[selectedTransport] ||
         transportData.txopela;
-
-
-    document.getElementById(
-        'vehicleImage'
-    ).src = data.image;
-
-
-    document.getElementById(
-        'vehicleImage'
-    ).alt = data.name;
-
-
-    document.getElementById(
-        'vehicleName'
-    ).textContent = data.name;
-
-
-    document.getElementById(
-        'vehicleDescription'
-    ).textContent = data.description;
-
-
-    document.getElementById(
-        'vehiclePrice'
-    ).textContent = data.price;
 
 
     /* ==========================================
        ELEMENTOS
     ========================================== */
 
-    const rideSheet =
+    const categoryName =
         document.getElementById(
-            'rideSheet'
+            'categoryName'
         );
 
 
-    const expandTrip =
+    const categoryDescription =
         document.getElementById(
-            'expandTrip'
+            'categoryDescription'
         );
 
 
-    const originSelector =
+    const categoryIcon =
         document.getElementById(
-            'originSelector'
+            'categoryIcon'
         );
 
 
-    const destinationSelector =
+    const driversList =
         document.getElementById(
-            'destinationSelector'
+            'driversList'
         );
 
 
-    const pickupLocation =
+    const driverCount =
         document.getElementById(
-            'pickupLocation'
+            'driverCount'
         );
 
 
-    const destinationLocation =
+    const continueButton =
         document.getElementById(
-            'destinationLocation'
+            'continueButton'
         );
 
 
-    const tripDistance =
+    const promotionButton =
         document.getElementById(
-            'tripDistance'
+            'promotionButton'
         );
 
 
-    const tripTime =
+    const promotionModal =
         document.getElementById(
-            'tripTime'
+            'promotionModal'
         );
 
 
-    const tripPrice =
+    const closePromotion =
         document.getElementById(
-            'tripPrice'
+            'closePromotion'
         );
 
 
-    const requestButton =
+    const promotionOk =
         document.getElementById(
-            'requestRide'
+            'promotionOk'
+        );
+
+
+    const helpButton =
+        document.getElementById(
+            'helpButton'
+        );
+
+
+    const helpModal =
+        document.getElementById(
+            'helpModal'
+        );
+
+
+    const closeHelp =
+        document.getElementById(
+            'closeHelp'
+        );
+
+
+    const helpOk =
+        document.getElementById(
+            'helpOk'
         );
 
 
@@ -169,6 +309,483 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(
             'closeIosNotice'
         );
+
+
+    /* ==========================================
+       MOSTRAR CATEGORIA
+    ========================================== */
+
+    categoryName.textContent =
+        category.name;
+
+
+    categoryDescription.textContent =
+        category.description;
+
+
+    categoryIcon.className =
+        category.icon;
+
+
+    /* ==========================================
+       MASCARAR TELEFONE
+       
+       Exemplo:
+       +258 859*****2
+    ========================================== */
+
+    function maskPhone(phone) {
+
+        const clean =
+            String(phone)
+                .replace(/\D/g, '');
+
+
+        if (
+            clean.length < 12
+        ) {
+
+            return '+258 ********';
+
+        }
+
+
+        const localNumber =
+            clean.substring(3);
+
+
+        const firstThree =
+            localNumber.substring(
+                0,
+                3
+            );
+
+
+        const lastDigit =
+            localNumber.substring(
+                localNumber.length - 1
+            );
+
+
+        return `+258 ${firstThree}*****${lastDigit}`;
+
+    }
+
+
+    /* ==========================================
+       FILTRAR MOTORISTAS
+    ========================================== */
+
+    const availableDrivers =
+        drivers.filter(
+            driver =>
+                driver.category ===
+                selectedTransport &&
+                driver.online === true
+        );
+
+
+    /* ==========================================
+       MOTORISTA SELECIONADO
+    ========================================== */
+
+    let selectedDriver =
+        null;
+
+
+    /* ==========================================
+       CRIAR CARD DO MOTORISTA
+    ========================================== */
+
+    function createDriverCard(driver) {
+
+        const card =
+            document.createElement(
+                'article'
+            );
+
+
+        card.className =
+            'driver-card';
+
+
+        card.dataset.id =
+            driver.id;
+
+
+        card.innerHTML = `
+
+            <img
+                class="driver-avatar"
+                src="${driver.avatar}"
+                alt="${driver.name}"
+                loading="lazy"
+                onerror="this.src='https://i.pravatar.cc/150?u=${driver.id}'"
+            >
+
+
+            <div class="driver-info">
+
+                <div class="driver-name-row">
+
+                    <strong class="driver-name">
+                        ${driver.name}
+                    </strong>
+
+                    <span class="driver-status"></span>
+
+                </div>
+
+
+                <div class="driver-phone">
+                    ${maskPhone(driver.phone)}
+                </div>
+
+
+                <span class="driver-category">
+                    ${category.name}
+                </span>
+
+            </div>
+
+
+            <button
+                class="choose-driver"
+                type="button"
+                data-driver-id="${driver.id}"
+            >
+
+                <i class="fi fi-rr-check"></i>
+
+                Escolher
+
+            </button>
+
+        `;
+
+
+        const chooseButton =
+            card.querySelector(
+                '.choose-driver'
+            );
+
+
+        chooseButton.addEventListener(
+            'click',
+            event => {
+
+                event.stopPropagation();
+
+                selectDriver(
+                    driver,
+                    card,
+                    chooseButton
+                );
+
+            }
+        );
+
+
+        card.addEventListener(
+            'click',
+            () => {
+
+                selectDriver(
+                    driver,
+                    card,
+                    chooseButton
+                );
+
+            }
+        );
+
+
+        return card;
+
+    }
+
+
+    /* ==========================================
+       SELECIONAR MOTORISTA
+    ========================================== */
+
+    function selectDriver(
+        driver,
+        card,
+        button
+    ) {
+
+        document
+            .querySelectorAll(
+                '.driver-card'
+            )
+            .forEach(
+                item => {
+
+                    item.classList.remove(
+                        'selected'
+                    );
+
+                    const itemButton =
+                        item.querySelector(
+                            '.choose-driver'
+                        );
+
+
+                    if (itemButton) {
+
+                        itemButton.classList.remove(
+                            'selected'
+                        );
+
+                        itemButton.innerHTML = `
+
+                            <i class="fi fi-rr-check"></i>
+
+                            Escolher
+
+                        `;
+
+                    }
+
+                }
+            );
+
+
+        selectedDriver =
+            driver;
+
+
+        card.classList.add(
+            'selected'
+        );
+
+
+        button.classList.add(
+            'selected'
+        );
+
+
+        button.innerHTML = `
+
+            <i class="fi fi-rr-check"></i>
+
+            Selecionado
+
+        `;
+
+
+        continueButton.disabled =
+            false;
+
+
+        continueButton.querySelector(
+            'span'
+        ).textContent =
+            `Continuar com ${driver.name.split(' ')[0]}`;
+
+    }
+
+
+    /* ==========================================
+       MOSTRAR MOTORISTAS
+    ========================================== */
+
+    function renderDrivers() {
+
+        driversList.innerHTML =
+            '';
+
+
+        if (
+            availableDrivers.length === 0
+        ) {
+
+            driversList.innerHTML = `
+
+                <div class="empty-state">
+
+                    <strong>
+                        Nenhum motorista disponível
+                    </strong>
+
+                    <p>
+                        Não encontramos motoristas online
+                        para esta categoria neste momento.
+                    </p>
+
+                </div>
+
+            `;
+
+
+            driverCount.textContent =
+                'Nenhum motorista encontrado';
+
+            return;
+
+        }
+
+
+        availableDrivers.forEach(
+            driver => {
+
+                driversList.appendChild(
+                    createDriverCard(
+                        driver
+                    )
+                );
+
+            }
+        );
+
+
+        driverCount.textContent =
+            `${availableDrivers.length} ${
+                availableDrivers.length === 1
+                    ? 'motorista'
+                    : 'motoristas'
+            } encontrados`;
+
+    }
+
+
+    /* ==========================================
+       PROMOÇÕES
+    ========================================== */
+
+    function openPromotionModal() {
+
+        promotionModal.classList.add(
+            'show'
+        );
+
+
+        promotionModal.setAttribute(
+            'aria-hidden',
+            'false'
+        );
+
+    }
+
+
+    function closePromotionModal() {
+
+        promotionModal.classList.remove(
+            'show'
+        );
+
+
+        promotionModal.setAttribute(
+            'aria-hidden',
+            'true'
+        );
+
+    }
+
+
+    promotionButton.addEventListener(
+        'click',
+        openPromotionModal
+    );
+
+
+    closePromotion.addEventListener(
+        'click',
+        closePromotionModal
+    );
+
+
+    promotionOk.addEventListener(
+        'click',
+        closePromotionModal
+    );
+
+
+    promotionModal.addEventListener(
+        'click',
+        event => {
+
+            if (
+                event.target ===
+                promotionModal
+            ) {
+
+                closePromotionModal();
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       AJUDA
+    ========================================== */
+
+    function openHelpModal() {
+
+        helpModal.classList.add(
+            'show'
+        );
+
+
+        helpModal.setAttribute(
+            'aria-hidden',
+            'false'
+        );
+
+    }
+
+
+    function closeHelpModal() {
+
+        helpModal.classList.remove(
+            'show'
+        );
+
+
+        helpModal.setAttribute(
+            'aria-hidden',
+            'true'
+        );
+
+    }
+
+
+    helpButton.addEventListener(
+        'click',
+        openHelpModal
+    );
+
+
+    closeHelp.addEventListener(
+        'click',
+        closeHelpModal
+    );
+
+
+    helpOk.addEventListener(
+        'click',
+        closeHelpModal
+    );
+
+
+    helpModal.addEventListener(
+        'click',
+        event => {
+
+            if (
+                event.target ===
+                helpModal
+            ) {
+
+                closeHelpModal();
+
+            }
+
+        }
+    );
 
 
     /* ==========================================
@@ -187,824 +804,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       ABRIR / FECHAR DETALHES
+       BOTÃO CONTINUAR
     ========================================== */
 
-    expandTrip.addEventListener(
+    continueButton.addEventListener(
         'click',
         () => {
 
-            rideSheet.classList.toggle(
-                'expanded'
-            );
-
-        }
-    );
-
-
-    /* ==========================================
-       MODO DE SELEÇÃO
-       
-       origin = origem
-       destination = destino
-    ========================================== */
-
-    let selectionMode =
-        'origin';
-
-
-    function setSelectionMode(mode) {
-
-        selectionMode = mode;
-
-
-        originSelector.classList.toggle(
-            'active',
-            mode === 'origin'
-        );
-
-
-        destinationSelector.classList.toggle(
-            'active',
-            mode === 'destination'
-        );
-
-
-        if (mode === 'origin') {
-
-            pickupLocation.textContent =
-                'Toque no mapa para definir a origem';
-
-        } else {
-
-            destinationLocation.textContent =
-                'Toque no mapa para definir o destino';
-
-        }
-
-    }
-
-
-    originSelector.addEventListener(
-        'click',
-        () => {
-
-            setSelectionMode(
-                'origin'
-            );
-
-        }
-    );
-
-
-    destinationSelector.addEventListener(
-        'click',
-        () => {
-
-            setSelectionMode(
-                'destination'
-            );
-
-        }
-    );
-
-
-    /* ==========================================
-       MAPBOX
-    ========================================== */
-
-    mapboxgl.accessToken =
-        'pk.eyJ1IjoiaXJpYW5vIiwiYSI6ImNtc2Q5enM2dzA0N2cyenNma2V1dHY2amIifQ.vEHa9WySSOYAIrOEwz-hwQ';
-
-
-    const map =
-        new mapboxgl.Map({
-
-            container: 'map',
-
-            style:
-                'mapbox://styles/mapbox/streets-v12',
-
-            center: [
-                35.3069,
-                -22.0131
-            ],
-
-            zoom: 13,
-
-            attributionControl: true
-
-        });
-
-
-    map.addControl(
-
-        new mapboxgl.NavigationControl({
-            showCompass: false
-        }),
-
-        'top-right'
-
-    );
-
-
-    /* ==========================================
-       VARIÁVEIS DA VIAGEM
-    ========================================== */
-
-    let originCoordinates =
-        null;
-
-
-    let destinationCoordinates =
-        null;
-
-
-    let originMarker =
-        null;
-
-
-    let destinationMarker =
-        null;
-
-
-    let routeLoaded =
-        false;
-
-
-    /* ==========================================
-       CRIAR MARCADOR PERSONALIZADO
-    ========================================== */
-
-    function createMarkerElement(type) {
-
-        const element =
-            document.createElement(
-                'div'
-            );
-
-
-        element.className =
-            `map-marker ${type}`;
-
-
-        return element;
-
-    }
-
-
-    /* ==========================================
-       MARCADOR DE ORIGEM
-    ========================================== */
-
-    function updateOrigin(lng, lat) {
-
-        originCoordinates = [
-            lng,
-            lat
-        ];
-
-
-        if (originMarker) {
-
-            originMarker.remove();
-
-        }
-
-
-        originMarker =
-            new mapboxgl.Marker({
-
-                element:
-                    createMarkerElement(
-                        'origin'
-                    ),
-
-                anchor:
-                    'center'
-
-            })
-
-            .setLngLat([
-                lng,
-                lat
-            ])
-
-            .addTo(map);
-
-
-        pickupLocation.textContent =
-            `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-
-
-        checkRoute();
-
-    }
-
-
-    /* ==========================================
-       MARCADOR DE DESTINO
-    ========================================== */
-
-    function updateDestination(lng, lat) {
-
-        destinationCoordinates = [
-            lng,
-            lat
-        ];
-
-
-        if (destinationMarker) {
-
-            destinationMarker.remove();
-
-        }
-
-
-        destinationMarker =
-            new mapboxgl.Marker({
-
-                element:
-                    createMarkerElement(
-                        'destination'
-                    ),
-
-                anchor:
-                    'center'
-
-            })
-
-            .setLngLat([
-                lng,
-                lat
-            ])
-
-            .addTo(map);
-
-
-        destinationLocation.textContent =
-            `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-
-
-        checkRoute();
-
-    }
-
-
-    /* ==========================================
-       CLIQUE NO MAPA
-    ========================================== */
-
-    map.on(
-        'click',
-        event => {
-
-            const lng =
-                event.lngLat.lng;
-
-
-            const lat =
-                event.lngLat.lat;
-
-
-            if (
-                selectionMode ===
-                'origin'
-            ) {
-
-                updateOrigin(
-                    lng,
-                    lat
-                );
-
-            } else {
-
-                updateDestination(
-                    lng,
-                    lat
-                );
-
-            }
-
-        }
-    );
-
-
-    /* ==========================================
-       VERIFICAR SE PODE DESENHAR ROTA
-    ========================================== */
-
-    function checkRoute() {
-
-        if (
-            !originCoordinates ||
-            !destinationCoordinates
-        ) {
-
-            requestButton.disabled =
-                true;
-
-            return;
-
-        }
-
-
-        requestButton.disabled =
-            false;
-
-
-        requestButton.querySelector(
-            'span'
-        ).textContent =
-            'Confirmar viagem';
-
-
-        getRoute();
-
-    }
-
-
-    /* ==========================================
-       MAPBOX DIRECTIONS API
-    ========================================== */
-
-    async function getRoute() {
-
-        if (
-            !originCoordinates ||
-            !destinationCoordinates
-        ) {
-
-            return;
-
-        }
-
-
-        const origin =
-            originCoordinates.join(',');
-
-
-        const destination =
-            destinationCoordinates.join(',');
-
-
-        const url =
-            `https://api.mapbox.com/directions/v5/mapbox/driving/` +
-            `${origin};${destination}` +
-            `?alternatives=false` +
-            `&geometries=geojson` +
-            `&overview=full` +
-            `&steps=false` +
-            `&access_token=${mapboxgl.accessToken}`;
-
-
-        try {
-
-            const response =
-                await fetch(url);
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    'Erro ao consultar rota'
-                );
-
-            }
-
-
-            const result =
-                await response.json();
-
-
-            if (
-                !result.routes ||
-                !result.routes.length
-            ) {
+            if (!selectedDriver) {
 
                 return;
 
             }
 
 
-            const route =
-                result.routes[0];
-
-
-            drawRoute(
-                route.geometry
-            );
-
-
-            updateTripInformation(
-                route.distance,
-                route.duration
-            );
-
-
-        } catch (error) {
-
-            console.error(
-                'Erro da rota:',
-                error
-            );
-
-        }
-
-    }
-
-
-    /* ==========================================
-       DESENHAR ROTA
-    ========================================== */
-
-    function drawRoute(
-        geometry
-    ) {
-
-        const sourceId =
-            'vilataxi-route';
-
-
-        const layerId =
-            'vilataxi-route-line';
-
-
-        if (
-            map.getLayer(layerId)
-        ) {
-
-            map.removeLayer(
-                layerId
-            );
-
-        }
-
-
-        if (
-            map.getSource(sourceId)
-        ) {
-
-            map.removeSource(
-                sourceId
-            );
-
-        }
-
-
-        map.addSource(
-            sourceId,
-            {
-
-                type: 'geojson',
-
-                data: {
-
-                    type: 'Feature',
-
-                    properties: {},
-
-                    geometry:
-                        geometry
-
-                }
-
-            }
-        );
-
-
-        map.addLayer({
-
-            id: layerId,
-
-            type: 'line',
-
-            source: sourceId,
-
-            layout: {
-
-                'line-cap':
-                    'round',
-
-                'line-join':
-                    'round'
-
-            },
-
-            paint: {
-
-                'line-color':
-                    '#0C2D24',
-
-                'line-width':
-                    5,
-
-                'line-opacity':
-                    0.85
-
-            }
-
-        });
-
-
-        routeLoaded =
-            true;
-
-
-        /* Ajustar mapa aos dois pontos */
-
-        const bounds =
-            new mapboxgl.LngLatBounds();
-
-
-        bounds.extend(
-            originCoordinates
-        );
-
-
-        bounds.extend(
-            destinationCoordinates
-        );
-
-
-        map.fitBounds(
-            bounds,
-            {
-
-                padding: {
-
-                    top: 120,
-
-                    bottom: 390,
-
-                    left: 35,
-
-                    right: 35
-
-                },
-
-                duration: 900,
-
-                maxZoom: 16
-
-            }
-        );
-
-    }
-
-
-    /* ==========================================
-       DISTÂNCIA / TEMPO / PREÇO
-    ========================================== */
-
-    function updateTripInformation(
-        distanceMeters,
-        durationSeconds
-    ) {
-
-        const distanceKm =
-            distanceMeters / 1000;
-
-
-        const minutes =
-            Math.max(
-                1,
-                Math.round(
-                    durationSeconds / 60
-                )
-            );
-
-
-        /*
-         * O valor armazenado no transporte
-         * é usado como preço estimado.
-         *
-         * Pode ser substituído depois
-         * pelo sistema real de preço/km.
-         */
-
-        const estimatedPrice =
-            calculatePrice(
-                distanceKm,
-                data.price
-            );
-
-
-        tripDistance.textContent =
-            `${distanceKm.toFixed(1)} km`;
-
-
-        tripTime.textContent =
-            `${minutes} min`;
-
-
-        tripPrice.textContent =
-            `${estimatedPrice} MZN`;
-
-    }
-
-
-    /* ==========================================
-       CÁLCULO DE PREÇO
-    ========================================== */
-
-    function calculatePrice(
-        distanceKm,
-        basePrice
-    ) {
-
-        /*
-         * Preço mínimo = preço do transporte.
-         *
-         * Cada km adicional acrescenta
-         * 10 MZN nesta versão.
-         *
-         * Este valor pode ser alterado
-         * posteriormente para o preço real
-         * da VilaTáxi.
-         */
-
-        const extraKm =
-            Math.max(
-                0,
-                distanceKm - 1
-            );
-
-
-        const price =
-            basePrice +
-            (extraKm * 10);
-
-
-        return Math.round(
-            price
-        );
-
-    }
-
-
-    /* ==========================================
-       LOCALIZAÇÃO DO UTILIZADOR
-    ========================================== */
-
-    function getUserLocation() {
-
-        if (
-            !navigator.geolocation
-        ) {
-
-            pickupLocation.textContent =
-                'Geolocalização não suportada';
-
-            return;
-
-        }
-
-
-        pickupLocation.textContent =
-            'A obter localização...';
-
-
-        navigator.geolocation.getCurrentPosition(
-
-            position => {
-
-                const lat =
-                    position.coords.latitude;
-
-
-                const lng =
-                    position.coords.longitude;
-
-
-                updateOrigin(
-                    lng,
-                    lat
-                );
-
-
-                map.flyTo({
-
-                    center: [
-                        lng,
-                        lat
-                    ],
-
-                    zoom: 16,
-
-                    speed: 1.2,
-
-                    essential: true
-
-                });
-
-
-                /*
-                 * Depois de obter a origem,
-                 * muda automaticamente para
-                 * seleção do destino.
-                 */
-
-                setSelectionMode(
-                    'destination'
-                );
-
-            },
-
-
-            error => {
-
-                console.error(
-                    'Erro de localização:',
-                    error
-                );
-
-
-                pickupLocation.textContent =
-                    'Toque no mapa para definir a origem';
-
-            },
-
-            {
-
-                enableHighAccuracy:
-                    true,
-
-                timeout:
-                    10000,
-
-                maximumAge:
-                    30000
-
-            }
-
-        );
-
-    }
-
-
-    /* ==========================================
-       BOTÃO MINHA LOCALIZAÇÃO
-    ========================================== */
-
-    document
-        .getElementById(
-            'locationButton'
-        )
-        .addEventListener(
-            'click',
-            getUserLocation
-        );
-
-
-    /* ==========================================
-       BOTÃO PRINCIPAL
-    ========================================== */
-
-    requestButton.addEventListener(
-        'click',
-        () => {
-
-            if (
-                !originCoordinates ||
-                !destinationCoordinates
-            ) {
-
-                return;
-
-            }
-
-
-            requestButton.disabled =
+            continueButton.disabled =
                 true;
 
 
-            requestButton.querySelector(
+            continueButton.querySelector(
                 'span'
             ).textContent =
-                'A preparar viagem...';
+                'A preparar pedido...';
 
+
+            /*
+             * Aqui futuramente entra a criação
+             * do pedido no Firebase.
+             */
 
             setTimeout(
                 () => {
 
                     alert(
-                        'Origem e destino selecionados. Próximo passo: confirmar a solicitação.'
+                        `Motorista selecionado: ${selectedDriver.name}\nTelefone: ${maskPhone(selectedDriver.phone)}`
                     );
 
 
-                    requestButton.disabled =
+                    continueButton.disabled =
                         false;
 
 
-                    requestButton.querySelector(
+                    continueButton.querySelector(
                         'span'
                     ).textContent =
-                        'Confirmar viagem';
-
+                        `Continuar com ${
+                            selectedDriver.name.split(' ')[0]
+                        }`;
 
                 },
-                700
+                600
             );
 
         }
@@ -1012,16 +861,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       INICIALIZAÇÃO
+       INICIAR
     ========================================== */
 
-    map.on(
-        'load',
-        () => {
-
-            getUserLocation();
-
-        }
-    );
+    renderDrivers();
 
 });
