@@ -9,12 +9,17 @@
 
     --accent-yellow: #E5B218;
 
+    --background: #F7F8F7;
+
     --card-bg: #FFFFFF;
 
     --text-dark: #1F2937;
+
     --text-muted: #6B7280;
 
     --border-color: #E5E7EB;
+
+    --success: #16A34A;
 
 }
 
@@ -45,18 +50,18 @@ html,
 body {
 
     width: 100%;
-    height: 100%;
-
-    overflow: hidden;
+    min-height: 100%;
 
 }
 
 
 body {
 
-    background: #fff;
+    background:
+        var(--background);
 
-    color: var(--text-dark);
+    color:
+        var(--text-dark);
 
 }
 
@@ -77,16 +82,16 @@ body {
     z-index: 1000;
 
     background:
-        rgba(255,255,255,.95);
+        rgba(255,255,255,.96);
 
     backdrop-filter:
-        blur(15px);
+        blur(18px);
 
     -webkit-backdrop-filter:
-        blur(15px);
+        blur(18px);
 
     box-shadow:
-        0 3px 15px rgba(0,0,0,.05);
+        0 3px 18px rgba(0,0,0,.05);
 
 }
 
@@ -118,35 +123,37 @@ body {
 
 .logo img {
 
-    width: 38px;
-    height: 38px;
+    width: 39px;
+    height: 39px;
 
     object-fit: cover;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
 }
 
 
 /* ==========================================
-   WHATSAPP
+   BOTÃO AJUDA
 ========================================== */
 
-.whatsapp-button {
+.header-action {
 
     height: 38px;
 
     padding:
         0 13px;
 
+    border:
+        1px solid var(--border-color);
+
     border-radius: 20px;
 
-    text-decoration: none;
-
     background:
-        #25D366;
+        #fff;
 
-    color: #fff;
+    color:
+        var(--primary-green);
 
     display: flex;
 
@@ -161,14 +168,16 @@ body {
     font-weight: 800;
 
     box-shadow:
-        0 4px 12px rgba(37,211,102,.20);
+        0 3px 10px rgba(0,0,0,.05);
+
+    cursor: pointer;
 
 }
 
 
-.whatsapp-button i {
+.header-action i {
 
-    font-size: 16px;
+    font-size: 15px;
 
 }
 
@@ -186,7 +195,7 @@ body {
     width: 100%;
 
     padding:
-        7px 42px 7px 15px;
+        7px 43px 7px 15px;
 
     display: flex;
 
@@ -199,7 +208,8 @@ body {
     background:
         var(--primary-green);
 
-    color: #fff;
+    color:
+        #fff;
 
     font-size: 10px;
 
@@ -226,12 +236,13 @@ body {
 
     border: none;
 
-    background:
-        rgba(255,255,255,.12);
-
-    color: #fff;
-
     border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.13);
+
+    color:
+        #fff;
 
     display: flex;
 
@@ -240,126 +251,54 @@ body {
 
     font-size: 16px;
 
-}
-
-
-/* ==========================================
-   MAPA
-========================================== */
-
-.map-screen {
-
-    position: fixed;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-}
-
-
-.map {
-
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
+    cursor: pointer;
 
 }
 
 
 /* ==========================================
-   BOTÃO LOCALIZAÇÃO
+   PÁGINA
 ========================================== */
 
-.location-button {
+.drivers-page {
 
-    position: fixed;
+    min-height: 100vh;
 
-    right: 16px;
-
-    bottom: 350px;
-
-    z-index: 500;
-
-    width: 46px;
-    height: 46px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #fff;
-
-    color:
-        var(--primary-green);
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.20);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 18px;
-
-}
-
-
-/* ==========================================
-   BOTTOM SHEET
-========================================== */
-
-.ride-sheet {
-
-    position: fixed;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    z-index: 600;
-
-    width: 100%;
-
-    background:
-        var(--card-bg);
-
-    border-radius:
-        24px 24px 0 0;
-
-    box-shadow:
-        0 -8px 35px rgba(0,0,0,.16);
-
-    padding:
-        17px 18px;
+    padding-top: 120px;
 
     padding-bottom:
-        calc(16px + env(safe-area-inset-bottom));
+        calc(92px + env(safe-area-inset-bottom));
 
-    max-height: 54vh;
+}
 
-    overflow-y: auto;
+
+.page-container {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 17px;
 
 }
 
 
 /* ==========================================
-   CABEÇALHO
+   TÍTULO
 ========================================== */
 
-.sheet-header {
+.page-heading {
 
-    margin-bottom: 14px;
+    margin-bottom: 17px;
 
 }
 
 
-.sheet-label {
+.page-label {
 
     display: block;
 
@@ -370,29 +309,56 @@ body {
 
     font-weight: 900;
 
-    letter-spacing: .8px;
+    letter-spacing: .9px;
 
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 
 }
 
 
-.sheet-header h1 {
+.page-heading h1 {
 
-    font-size: 21px;
+    font-size: 23px;
 
     line-height: 1.15;
 
     font-weight: 900;
 
+    letter-spacing: -.4px;
+
+}
+
+
+.page-heading p {
+
+    margin-top: 5px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
 }
 
 
 /* ==========================================
-   TRANSPORTE
+   CATEGORIA
 ========================================== */
 
-.vehicle-card {
+.category-card {
+
+    width: 100%;
+
+    min-height: 72px;
+
+    padding: 10px 12px;
+
+    background:
+        var(--card-bg);
+
+    border-radius: 17px;
 
     display: flex;
 
@@ -400,342 +366,49 @@ body {
 
     gap: 11px;
 
-    padding: 10px;
-
-    background:
-        #F7F8F8;
-
-    border-radius: 16px;
-
-    margin-bottom: 13px;
-
-}
-
-
-.vehicle-image {
-
-    width: 62px;
-    height: 62px;
-
-    flex-shrink: 0;
-
-    object-fit: cover;
-
-    border-radius: 13px;
-
-}
-
-
-.vehicle-info {
-
-    flex: 1;
-
-    min-width: 0;
-
-}
-
-
-.vehicle-label {
-
-    display: block;
-
-    font-size: 8px;
-
-    color:
-        var(--text-muted);
-
-    font-weight: 800;
-
-    letter-spacing: .5px;
-
-}
-
-
-.vehicle-info h2 {
-
-    font-size: 16px;
-
-    font-weight: 900;
-
-    margin-top: 2px;
-
-}
-
-
-.vehicle-info p {
-
-    font-size: 10px;
-
-    color:
-        var(--text-muted);
-
-    line-height: 1.3;
-
-    margin-top: 2px;
-
-}
-
-
-.vehicle-price {
-
-    text-align: right;
-
-    flex-shrink: 0;
-
-}
-
-
-.vehicle-price span {
-
-    display: block;
-
-    font-size: 8px;
-
-    color:
-        var(--text-muted);
-
-}
-
-
-.vehicle-price strong {
-
-    font-size: 16px;
-
-    font-weight: 900;
-
-    white-space: nowrap;
-
-}
-
-
-/* ==========================================
-   LOCALIZAÇÕES
-========================================== */
-
-.locations {
-
     margin-bottom: 10px;
 
 }
 
 
-.location-row {
+.category-icon {
 
-    width: 100%;
-
-    min-height: 49px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    border: none;
-
-    background: transparent;
-
-    text-align: left;
-
-}
-
-
-.location-selector {
-
-    cursor: pointer;
-
-    border-radius: 12px;
-
-    padding:
-        5px 7px;
-
-    transition:
-        background .2s ease;
-
-}
-
-
-.location-selector.active {
-
-    background:
-        rgba(12,45,36,.06);
-
-}
-
-
-.location-symbol {
-
-    width: 30px;
-    height: 30px;
-
-    border-radius: 50%;
+    width: 48px;
+    height: 48px;
 
     flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-}
-
-
-.location-symbol i {
-
-    font-size: 12px;
-
-}
-
-
-.origin-symbol {
-
-    color:
-        var(--primary-green);
-
-    background:
-        rgba(12,45,36,.10);
-
-}
-
-
-.destination-symbol {
-
-    color:
-        #A67E00;
-
-    background:
-        rgba(229,178,24,.16);
-
-}
-
-
-.location-content {
-
-    min-width: 0;
-
-    flex: 1;
-
-}
-
-
-.location-content span {
-
-    display: block;
-
-    color:
-        var(--text-muted);
-
-    font-size: 8px;
-
-    font-weight: 800;
-
-    letter-spacing: .4px;
-
-}
-
-
-.location-content strong {
-
-    display: block;
-
-    margin-top: 2px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-}
-
-
-.destination-arrow {
-
-    color:
-        var(--text-muted);
-
-    font-size: 17px;
-
-}
-
-
-.location-line {
-
-    height: 12px;
-
-    width: 1px;
-
-    margin-left: 21px;
-
-    background:
-        var(--border-color);
-
-}
-
-
-/* ==========================================
-   RESUMO
-========================================== */
-
-.trip-summary {
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    background:
-        #F7F8F8;
 
     border-radius: 14px;
 
-    padding:
-        10px 8px;
-
-    margin-bottom: 10px;
-
-}
-
-
-.ride-sheet.expanded
-.trip-summary {
-
-    display: flex;
-
-}
-
-
-.summary-item {
-
-    flex: 1;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 6px;
-
-}
-
-
-.summary-item > i {
+    background:
+        rgba(12,45,36,.08);
 
     color:
         var(--primary-green);
 
-    font-size: 14px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
 }
 
 
-.summary-item span {
+.category-icon i {
+
+    font-size: 21px;
+
+}
+
+
+.category-info {
+
+    flex: 1;
+
+}
+
+
+.category-info span {
 
     display: block;
 
@@ -744,73 +417,84 @@ body {
 
     font-size: 7px;
 
+    font-weight: 900;
+
+    letter-spacing: .6px;
+
 }
 
 
-.summary-item strong {
+.category-info strong {
 
     display: block;
 
-    margin-top: 1px;
+    margin-top: 3px;
 
-    font-size: 10px;
+    font-size: 14px;
 
     font-weight: 900;
 
 }
 
 
-.summary-divider {
+.category-check {
 
-    width: 1px;
+    width: 27px;
+    height: 27px;
 
-    height: 26px;
+    border-radius: 50%;
 
     background:
-        var(--border-color);
+        rgba(22,163,74,.10);
+
+    color:
+        var(--success);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
 
 }
 
 
 /* ==========================================
-   AÇÕES INFERIORES
+   LOCALIZAÇÃO
 ========================================== */
 
-.bottom-actions {
-
-    position: sticky;
-
-    bottom: 0;
+.location-card {
 
     display: flex;
 
     align-items: center;
 
-    gap: 9px;
+    gap: 10px;
 
-    padding-top: 2px;
+    min-height: 59px;
+
+    padding:
+        10px 12px;
 
     background:
-        var(--card-bg);
+        #F1F4F2;
+
+    border-radius: 15px;
+
+    margin-bottom: 24px;
 
 }
 
 
-/* ==========================================
-   BOTÃO +
-========================================== */
+.location-icon {
 
-.plus-button {
-
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
 
     flex-shrink: 0;
 
-    border: 1px solid
-        var(--border-color);
-
-    border-radius: 15px;
+    border-radius: 50%;
 
     background:
         #fff;
@@ -823,29 +507,458 @@ body {
     align-items: center;
     justify-content: center;
 
-    font-size: 17px;
+}
+
+
+.location-icon i {
+
+    font-size: 13px;
+
+}
+
+
+.location-card span {
+
+    display: block;
+
+    font-size: 7px;
+
+    color:
+        var(--text-muted);
+
+    font-weight: 900;
+
+    letter-spacing: .5px;
+
+}
+
+
+.location-card strong {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+/* ==========================================
+   TÍTULO DA LISTA
+========================================== */
+
+.drivers-section {
+
+    width: 100%;
+
+}
+
+
+.section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 11px;
+
+}
+
+
+.section-title h2 {
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+}
+
+
+.section-title p {
+
+    margin-top: 2px;
+
+    font-size: 9px;
+
+    color:
+        var(--text-muted);
+
+}
+
+
+.online-indicator {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding:
+        5px 8px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(22,163,74,.08);
+
+    color:
+        var(--success);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+}
+
+
+.online-indicator i {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        var(--success);
+
+}
+
+
+/* ==========================================
+   LISTA MOTORISTAS
+========================================== */
+
+.drivers-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+}
+
+
+/* ==========================================
+   CARD MOTORISTA
+========================================== */
+
+.driver-card {
+
+    width: 100%;
+
+    min-height: 76px;
+
+    padding:
+        10px;
+
+    background:
+        var(--card-bg);
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    transition:
+        border-color .2s ease,
+        transform .15s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.driver-card.selected {
+
+    border:
+        2px solid var(--primary-green);
 
     box-shadow:
-        0 3px 10px rgba(0,0,0,.06);
+        0 5px 18px rgba(12,45,36,.09);
+
+}
+
+
+.driver-card:active {
+
+    transform:
+        scale(.99);
+
+}
+
+
+/* ==========================================
+   AVATAR
+========================================== */
+
+.driver-avatar {
+
+    width: 54px;
+    height: 54px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background:
+        #E8ECEA;
+
+    border:
+        2px solid #fff;
+
+    box-shadow:
+        0 2px 7px rgba(0,0,0,.10);
+
+}
+
+
+/* ==========================================
+   DADOS DO MOTORISTA
+========================================== */
+
+.driver-info {
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+.driver-name-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+}
+
+
+.driver-name {
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.driver-status {
+
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        var(--success);
+
+}
+
+
+.driver-phone {
+
+    margin-top: 3px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: .2px;
+
+}
+
+
+.driver-category {
+
+    display: inline-block;
+
+    margin-top: 4px;
+
+    padding:
+        3px 6px;
+
+    border-radius: 5px;
+
+    background:
+        #F1F3F2;
+
+    color:
+        var(--text-muted);
+
+    font-size: 7px;
+
+    font-weight: 900;
+
+    letter-spacing: .3px;
+
+}
+
+
+/* ==========================================
+   BOTÃO ESCOLHER
+========================================== */
+
+.choose-driver {
+
+    flex-shrink: 0;
+
+    min-width: 70px;
+
+    height: 34px;
+
+    padding:
+        0 9px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        var(--primary-green);
+
+    color:
+        #fff;
+
+    font-size: 9px;
+
+    font-weight: 900;
 
     cursor: pointer;
 
 }
 
 
-.plus-button i {
+.choose-driver.selected {
 
-    transition:
-        transform .25s ease;
+    background:
+        var(--accent-yellow);
+
+    color:
+        var(--primary-green);
 
 }
 
 
-.ride-sheet.expanded
-.plus-button i {
+.choose-driver i {
+
+    margin-right: 3px;
+
+}
+
+
+/* ==========================================
+   AÇÕES INFERIORES
+========================================== */
+
+.bottom-actions {
+
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 900;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        10px 17px;
+
+    padding-bottom:
+        calc(10px + env(safe-area-inset-bottom));
+
+    background:
+        rgba(255,255,255,.96);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border-top:
+        1px solid rgba(0,0,0,.05);
+
+    box-shadow:
+        0 -5px 20px rgba(0,0,0,.07);
+
+}
+
+
+/* ==========================================
+   BOTÃO PROMOÇÕES
+========================================== */
+
+.promotion-button {
+
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius: 15px;
+
+    background:
+        #fff;
+
+    color:
+        var(--accent-yellow);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
+    cursor: pointer;
+
+}
+
+
+.promotion-button:active {
 
     transform:
-        rotate(45deg);
+        scale(.96);
 
 }
 
@@ -867,19 +980,19 @@ body {
     background:
         var(--primary-green);
 
-    color: #fff;
-
-    font-size: 13px;
-
-    font-weight: 900;
+    color:
+        #fff;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 8px;
+
+    font-size: 12px;
+
+    font-weight: 900;
 
     cursor: pointer;
 
@@ -895,117 +1008,259 @@ body {
 
 .request-button:active {
 
-    transform: scale(.98);
+    transform:
+        scale(.98);
 
 }
 
 
 .request-button:disabled {
 
-    opacity: .45;
+    opacity: .42;
 
-    cursor: not-allowed;
+    cursor:
+        not-allowed;
 
 }
 
 
 /* ==========================================
-   MAPBOX
+   MODAIS
 ========================================== */
 
-.mapboxgl-ctrl-top-right {
+.modal-overlay {
 
-    top: 85px;
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    background:
+        rgba(0,0,0,.48);
+
+    display: none;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    padding: 15px;
 
 }
 
 
-.mapboxgl-ctrl-group {
+.modal-overlay.show {
 
-    border-radius: 12px !important;
+    display: flex;
 
-    overflow: hidden;
+}
+
+
+.promotion-modal {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 430px;
+
+    background:
+        #fff;
+
+    border-radius: 24px;
+
+    padding:
+        28px 22px 22px;
+
+    text-align: center;
 
     box-shadow:
-        0 4px 15px rgba(0,0,0,.15) !important;
+        0 15px 50px rgba(0,0,0,.22);
+
+    animation:
+        modalUp .25s ease;
 
 }
 
 
-/* ==========================================
-   MARCADORES
-========================================== */
+@keyframes modalUp {
 
-.map-marker {
+    from {
 
-    width: 24px;
-    height: 24px;
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+.modal-close {
+
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
 
     border-radius: 50%;
 
-    border: 4px solid #fff;
+    background:
+        #F2F3F3;
 
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.30);
+    color:
+        var(--text-muted);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
 
 }
 
 
-.map-marker.origin {
+.promotion-icon,
+.help-icon {
+
+    width: 58px;
+    height: 58px;
+
+    margin:
+        0 auto 13px;
+
+    border-radius: 18px;
 
     background:
+        rgba(229,178,24,.13);
+
+    color:
+        var(--accent-yellow);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+}
+
+
+.help-icon {
+
+    background:
+        rgba(12,45,36,.09);
+
+    color:
         var(--primary-green);
 
 }
 
 
-.map-marker.destination {
+.promotion-modal h2 {
+
+    font-size: 19px;
+
+    font-weight: 900;
+
+}
+
+
+.promotion-modal p {
+
+    margin:
+        7px auto 19px;
+
+    max-width: 290px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+.modal-button {
+
+    width: 100%;
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 13px;
 
     background:
-        var(--accent-yellow);
+        var(--primary-green);
+
+    color:
+        #fff;
+
+    font-size: 11px;
+
+    font-weight: 900;
 
 }
 
 
 /* ==========================================
-   DESKTOP
+   RESPONSIVO
 ========================================== */
 
 @media (min-width: 768px) {
 
-    .nav-container {
+    .drivers-page {
 
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-top: 125px;
 
     }
 
 
-    .ride-sheet {
+    .page-container {
 
-        width: 460px;
+        max-width: 650px;
+
+    }
+
+
+    .bottom-actions {
 
         left: 50%;
+
         right: auto;
+
+        width: 650px;
+
+        max-width:
+            calc(100% - 30px);
 
         transform:
             translateX(-50%);
 
-        bottom: 20px;
-
-        border-radius: 24px;
-
-        max-height: 75vh;
+        border-radius:
+            20px 20px 0 0;
 
     }
 
-
-    .location-button {
-
-        right: 25px;
-
-        bottom: 40px;
-
-    }
-
-}
+   }
