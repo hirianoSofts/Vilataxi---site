@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
 
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
-    <title>VilaTáxi - Pedir viagem</title>
+    <title>VilaTáxi - Escolher motorista</title>
 
     <!-- Satoshi -->
     <link
@@ -21,12 +22,6 @@
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css"
-    >
-
-    <!-- Mapbox -->
-    <link
-        href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css"
-        rel="stylesheet"
     >
 
     <!-- CSS -->
@@ -50,6 +45,7 @@
             <a
                 href="../index.html"
                 class="logo"
+                aria-label="VilaTáxi"
             >
 
                 <img
@@ -60,19 +56,20 @@
             </a>
 
 
-            <a
-                href="https://wa.me/"
-                class="whatsapp-button"
-                target="_blank"
-                rel="noopener"
-                aria-label="WhatsApp VilaTáxi"
+            <!-- Ajuda -->
+
+            <button
+                id="helpButton"
+                class="header-action"
+                type="button"
+                aria-label="Ajuda"
             >
 
-                <i class="fi fi-brands-whatsapp"></i>
+                <i class="fi fi-rr-interrogation"></i>
 
-                <span>WhatsApp</span>
+                <span>Ajuda</span>
 
-            </a>
+            </button>
 
         </div>
 
@@ -89,14 +86,15 @@
             <i class="fi fi-rr-mobile"></i>
 
             <span>
-                Esta é uma versão em site da VilaTáxi para usuários de iOS.
-                Se usas Android, recomendamos que baixes o app.
+                Estás a usar a versão web da VilaTáxi.
+                No Android, recomendamos o nosso aplicativo.
             </span>
 
 
             <button
                 id="closeIosNotice"
                 class="close-notice"
+                type="button"
                 aria-label="Fechar aviso"
             >
 
@@ -110,305 +108,294 @@
 
 
     <!-- ==========================================
-         MAPA
+         CONTEÚDO
     ========================================== -->
 
-    <main class="map-screen">
+    <main class="drivers-page">
 
-        <div
-            id="map"
-            class="map"
-        ></div>
-
-
-        <!-- Botão localização -->
-
-        <button
-            id="locationButton"
-            class="location-button"
-            aria-label="Minha localização"
-        >
-
-            <i class="fi fi-rr-crosshairs"></i>
-
-        </button>
-
-
-        <!-- ======================================
-             BOTTOM SHEET
-        ====================================== -->
-
-        <section
-            class="ride-sheet"
-            id="rideSheet"
-        >
+        <div class="page-container">
 
             <!-- ==================================
-                 CABEÇALHO
+                 CABEÇALHO DA LISTA
             ================================== -->
 
-            <div class="sheet-header">
+            <section class="page-heading">
 
                 <div>
 
-                    <span class="sheet-label">
+                    <span class="page-label">
                         NOVA VIAGEM
                     </span>
 
                     <h1>
-                        Para onde vamos?
+                        Escolha o seu motorista
                     </h1>
 
-                </div>
-
-            </div>
-
-
-            <!-- ==================================
-                 TRANSPORTE
-            ================================== -->
-
-            <div class="vehicle-card">
-
-                <img
-                    id="vehicleImage"
-                    class="vehicle-image"
-                    src=""
-                    alt="Transporte"
-                >
-
-
-                <div class="vehicle-info">
-
-                    <span class="vehicle-label">
-                        TRANSPORTE
-                    </span>
-
-                    <h2 id="vehicleName">
-                        —
-                    </h2>
-
-                    <p id="vehicleDescription">
-                        —
+                    <p id="categoryDescription">
+                        Motoristas disponíveis para a categoria selecionada.
                     </p>
 
                 </div>
 
+            </section>
 
-                <div class="vehicle-price">
+
+            <!-- ==================================
+                 CATEGORIA
+            ================================== -->
+
+            <section class="category-card">
+
+                <div class="category-icon">
+
+                    <i
+                        id="categoryIcon"
+                        class="fi fi-rr-car-side"
+                    ></i>
+
+                </div>
+
+
+                <div class="category-info">
 
                     <span>
-                        A partir de
+                        CATEGORIA SELECIONADA
                     </span>
 
-                    <strong>
-
-                        <span id="vehiclePrice">
-                            —
-                        </span>
-
-                        MZN
-
+                    <strong id="categoryName">
+                        —
                     </strong>
 
                 </div>
 
-            </div>
+
+                <i class="fi fi-rr-check category-check"></i>
+
+            </section>
 
 
             <!-- ==================================
-                 LOCALIZAÇÕES
+                 LOCALIZAÇÃO
             ================================== -->
 
-            <div class="locations">
+            <section class="location-card">
 
-                <!-- Origem -->
+                <div class="location-icon">
 
-                <button
-                    class="location-row location-selector active"
-                    id="originSelector"
-                    type="button"
-                >
-
-                    <div class="location-symbol origin-symbol">
-
-                        <i class="fi fi-rr-circle"></i>
-
-                    </div>
-
-
-                    <div class="location-content">
-
-                        <span>
-                            ORIGEM
-                        </span>
-
-                        <strong id="pickupLocation">
-                            A obter localização...
-                        </strong>
-
-                    </div>
-
-                </button>
-
-
-                <div class="location-line"></div>
-
-
-                <!-- Destino -->
-
-                <button
-                    class="location-row location-selector"
-                    id="destinationSelector"
-                    type="button"
-                >
-
-                    <div class="location-symbol destination-symbol">
-
-                        <i class="fi fi-rr-marker"></i>
-
-                    </div>
-
-
-                    <div class="location-content">
-
-                        <span>
-                            DESTINO
-                        </span>
-
-                        <strong id="destinationLocation">
-                            Toque para escolher
-                        </strong>
-
-                    </div>
-
-
-                    <i class="fi fi-rr-angle-small-right destination-arrow"></i>
-
-                </button>
-
-            </div>
-
-
-            <!-- ==================================
-                 RESUMO AVANÇADO
-            ================================== -->
-
-            <div
-                class="trip-summary"
-                id="tripSummary"
-            >
-
-                <div class="summary-item">
-
-                    <i class="fi fi-rr-route"></i>
-
-                    <div>
-
-                        <span>
-                            Distância
-                        </span>
-
-                        <strong id="tripDistance">
-                            —
-                        </strong>
-
-                    </div>
+                    <i class="fi fi-rr-marker"></i>
 
                 </div>
 
 
-                <div class="summary-divider"></div>
-
-
-                <div class="summary-item">
-
-                    <i class="fi fi-rr-clock"></i>
-
-                    <div>
-
-                        <span>
-                            Tempo
-                        </span>
-
-                        <strong id="tripTime">
-                            —
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="summary-divider"></div>
-
-
-                <div class="summary-item">
-
-                    <i class="fi fi-rr-money"></i>
-
-                    <div>
-
-                        <span>
-                            Estimado
-                        </span>
-
-                        <strong id="tripPrice">
-                            —
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ==================================
-                 AÇÕES INFERIORES
-            ================================== -->
-
-            <div class="bottom-actions">
-
-                <button
-                    id="expandTrip"
-                    class="plus-button"
-                    type="button"
-                    aria-label="Mostrar detalhes da viagem"
-                >
-
-                    <i class="fi fi-rr-plus"></i>
-
-                </button>
-
-
-                <button
-                    class="request-button"
-                    id="requestRide"
-                    type="button"
-                    disabled
-                >
+                <div>
 
                     <span>
-                        Escolher destino
+                        LOCAL DE EMBARQUE
                     </span>
 
-                    <i class="fi fi-rr-arrow-small-right"></i>
+                    <strong>
+                        A sua localização
+                    </strong>
 
-                </button>
+                </div>
 
-            </div>
+            </section>
 
-        </section>
+
+            <!-- ==================================
+                 MOTORISTAS
+            ================================== -->
+
+            <section class="drivers-section">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>
+                            Motoristas disponíveis
+                        </h2>
+
+                        <p id="driverCount">
+                            0 motoristas encontrados
+                        </p>
+
+                    </div>
+
+                    <span class="online-indicator">
+
+                        <i></i>
+
+                        Online
+
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="driversList"
+                    class="drivers-list"
+                ></div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ======================================
+             BOTTOM ACTIONS
+        ====================================== -->
+
+        <div class="bottom-actions">
+
+            <!-- Promoções -->
+
+            <button
+                id="promotionButton"
+                class="promotion-button"
+                type="button"
+                aria-label="Promoções"
+            >
+
+                <i class="fi fi-rr-badge-percent"></i>
+
+            </button>
+
+
+            <!-- Continuar -->
+
+            <button
+                id="continueButton"
+                class="request-button"
+                type="button"
+                disabled
+            >
+
+                <span>
+                    Escolha um motorista
+                </span>
+
+                <i class="fi fi-rr-arrow-small-right"></i>
+
+            </button>
+
+        </div>
 
     </main>
 
 
-    <!-- Mapbox -->
+    <!-- ==========================================
+         MODAL DE PROMOÇÕES
+    ========================================== -->
 
-    <script
-        src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"
-    ></script>
+    <div
+        id="promotionModal"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div class="promotion-modal">
+
+            <button
+                id="closePromotion"
+                class="modal-close"
+                type="button"
+                aria-label="Fechar"
+            >
+
+                <i class="fi fi-rr-cross-small"></i>
+
+            </button>
+
+
+            <div class="promotion-icon">
+
+                <i class="fi fi-rr-badge-percent"></i>
+
+            </div>
+
+
+            <h2>
+                Promoções
+            </h2>
+
+
+            <p>
+                Não temos promoções disponíveis no momento.
+            </p>
+
+
+            <button
+                id="promotionOk"
+                class="modal-button"
+                type="button"
+            >
+
+                Entendido
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         MODAL DE AJUDA
+    ========================================== -->
+
+    <div
+        id="helpModal"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div class="promotion-modal">
+
+            <button
+                id="closeHelp"
+                class="modal-close"
+                type="button"
+                aria-label="Fechar"
+            >
+
+                <i class="fi fi-rr-cross-small"></i>
+
+            </button>
+
+
+            <div class="help-icon">
+
+                <i class="fi fi-rr-interrogation"></i>
+
+            </div>
+
+
+            <h2>
+                Precisa de ajuda?
+            </h2>
+
+
+            <p>
+                Escolha um motorista disponível para continuar
+                com o pedido da sua viagem.
+            </p>
+
+
+            <button
+                id="helpOk"
+                class="modal-button"
+                type="button"
+            >
+
+                Entendido
+
+            </button>
+
+        </div>
+
+    </div>
 
 
     <!-- JavaScript -->
@@ -418,4 +405,5 @@
     ></script>
 
 </body>
-</html>
+
+    </html>
