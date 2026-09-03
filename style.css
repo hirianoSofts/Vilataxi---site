@@ -153,110 +153,7 @@ body.dark-theme .logo-word strong {
     transform: rotate(180deg);
 }
 
-/* ================================
-   MENU DE NAVEGAÇÃO
-================================ */
 
-.top-nav {
-    width: 100%;
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    display: flex;
-    align-items: stretch;
-
-    /* As abas ocupam toda a largura */
-    justify-content: stretch;
-
-    /* Apenas separação vertical do cabeçalho */
-    border-top: 1px solid var(--border-color);
-
-    /* Padding vertical, sem padding lateral */
-    padding: 7px 0 9px;
-
-    gap: 0;
-}
-
-
-.nav-item {
-    flex: 1;
-    min-width: 0;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 4px;
-
-    color: var(--text-muted);
-    text-decoration: none;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    /* praticamente sem espaço lateral */
-    padding: 3px 0;
-
-    border-radius: 12px;
-
-    transition:
-        color 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-/* Ícone */
-.nav-icon {
-    width: 38px;
-    height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.nav-icon i {
-    font-size: 19px;
-}
-
-
-/* Aba ativa */
-.nav-item.active {
-    color: var(--primary-green);
-}
-
-
-.nav-item.active .nav-icon {
-    background: rgba(12, 45, 36, 0.10);
-    color: var(--primary-green);
-}
-
-
-body.dark-theme .nav-item.active {
-    color: var(--accent-yellow);
-}
-
-
-body.dark-theme .nav-item.active .nav-icon {
-    background: rgba(229, 178, 24, 0.12);
-    color: var(--accent-yellow);
-}
-
-
-.nav-item:active {
-    transform: scale(0.94);
-}
 
 /* ================================
    AVISO VILATÁXI — VERSÃO IOS
@@ -292,95 +189,7 @@ body.dark-theme .ios-notice {
 }
 
 
-/* ================================
-   SISTEMA DE ABAS
-================================ */
 
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-
-/* ================================
-   TELA "EM PROGRAMAÇÃO"
-================================ */
-
-.programming-page {
-    min-height: 55vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 40px 20px;
-}
-
-
-.programming-icon {
-    width: 76px;
-    height: 76px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--primary-green);
-    color: #fff;
-
-    border-radius: 22px;
-
-    margin-bottom: 20px;
-
-    box-shadow: 0 8px 25px rgba(12, 45, 36, 0.18);
-}
-
-.programming-icon i {
-    font-size: 32px;
-}
-
-
-.programming-page h2 {
-    font-size: 22px;
-    margin-bottom: 8px;
-}
-
-
-.programming-page p {
-    color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.5;
-
-    max-width: 280px;
-}
-
-
-.programming-page p strong {
-    color: var(--text-dark);
-}
-
-
-.programming-badge {
-    margin-top: 18px;
-
-    padding: 7px 14px;
-
-    border-radius: 20px;
-
-    background: var(--bg-light);
-    border: 1px solid var(--border-color);
-
-    color: var(--text-muted);
-
-    font-size: 11px;
-    font-weight: 700;
-}
 
 
 /* ================================
@@ -604,15 +413,19 @@ body.dark-theme .theme-option.active {
 
 .card-img {
     width: 90px;
-    height: 70px;
+    height: 90px;
     flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
 .card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    display: block;
+    border-radius: inherit;
 }
 
 .card-details {
@@ -743,7 +556,7 @@ body.dark-theme .theme-option.active {
     .cards-list { display: grid; grid-template-columns: repeat(3, 1fr); }
     .card-option { flex-direction: column; text-align: center; padding: 24px 16px; }
     .card-header { justify-content: center; }
-    .card-img { width: 120px; height: 90px; }
+    .card-img { width: 120px; height: 120px; }
     .promo-list { display: grid; grid-template-columns: repeat(3, 1fr); }
     .promo-card { flex-direction: column; text-align: center; }
     .account-panel-inner { padding: 24px; }
