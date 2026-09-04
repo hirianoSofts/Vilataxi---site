@@ -3,17 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VilaTáxi - Escolha o seu veículo</title>
+    <title>VilaTáxi - Pedir Viagem Online</title>
+    <meta name="description" content="Vilataxi Site  é um site de mobilidade e entregas express em Moçambique (Maputo, Vilankulo, Inhambane). Solicita táxi, viagens e entregas com pagamento via M-Pesa, e-Mola e cartão.">  <meta name="keywords" content="Vilataxi, Vilataxi app, táxi Moçambique, viagem Maputo, táxi Vilankulo, transporte Inhambane, M-Pesa táxi, e-Mola, entregas express Moçambique, motorista parceiro, VilaTáxi">
+    <meta name="author" content="HirianoDevs">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://www.app.vilataxi-site.online/">
 
+    <!-- GEO-TAGGING (MOÇAMBIQUE) -->
+    <meta name="geo.region" content="MZ-I">
+    <meta name="geo.placename" content="Vilankulo, Inhambane, Maputo">
+    <meta name="geo.position" content="-22.0139;35.3168">
+    <meta name="ICBM" content="-22.0139, 35.3168">
+
+    <!-- OPEN GRAPH (FACEBOOK, WHATSAPP, LINKEDIN) -->
+    <meta property="og:locale" content="pt_MZ">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Vilataxi Site | Viagens Rápidas, Seguras e Entregas em Moçambique">
+    <meta property="og:description" content="Chama o teu táxi ou envia encomendas em minutos em Moçambique. Preços transparentes, motoristas verificados e pagamentos por M-Pesa e e-Mola.">
+    <meta property="og:url" content="https://www.app.vilataxi-site.online/">
+    <meta property="og:site_name" content="VilaTaxi">
+    <meta property="og:image" content="https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png">
+    <meta property="og:image:secure_url" content="https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="VilaTaxi Site - Chame um taxi em Moçambique pelo site da vilataxi online ">
+
+    <!-- TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vilataxi Site | Chame um taxi Online Em Moçambique">
+    <meta name="twitter:description" content="Viaja com conforto e segurança ou ganha dinheiro como motorista parceiro em Moçambique. Baixa a app Vilataxi!">
+    <meta name="twitter:image" content="https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png">
+
+    <!-- FAVICON & APPARÊNCIA MOBILE -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png">
+    <meta name="theme-color" content="#233A35">
+
+    <!-- FONTE SATOSHI CDN -->
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
 
+    <!-- ÍCONES ICONS8 (LINE AWESOME) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css">
 
+    <!-- CSS EXTERNO -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="estilos/auth.css">
     <link rel="stylesheet" href="estilos/modalselect.css">
     <link rel="stylesheet" href="estilos/footer.css">
     <link rel="stylesheet" href="estilos/cookies.css">
+
+    <!-- SCHEMA.ORG / DADOS ESTRUTURADOS JSON-LD PARA GOOGLE -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+       "@graph": [
+         {
+             "@type": "SoftwareApplication",
+             "@id": "https://www.app.vilataxi.online/#software",
+             "name": "Vilataxi",
+             "operatingSystem": "ANDROID, WEB, IOS",
+             "applicationCategory": "TravelApplication",
+             "offequers": {
+             "@type": "Offer",
+             "price": "0",
+             "priceCurrency": "MZN"
+         },
+             "aggregateRating": {
+             "@type": "AggregateRating",
+             "ratingValue": "4.9",
+             "ratingCount": "10000"
+             },
+             "image": "https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png",
+             "description": "Plataforma de viagens urbanas, táxi e entregas rápidas com pagamento via M-Pesa, e-Mola e cartões bancários em Moçambique."
+         },
+           {
+             "@type": "LocalBusiness",
+             "@id": "https://www.app.vilataxi-site.online/#organization",
+             "name": "Vilataxi Moçambique",
+             "url": "https://www.vilataxi.online/",
+             "logo": "https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png",
+             "image": "https://i.supaimg.com/0c2919e9-36a7-40d3-ba4e-45bbb4658911/ccfa45b3-053c-4692-838f-c1f5b3a92fce.png",
+             "email": "suport@Vilataxi-site.online",
+             "telephone": "+258859308902",
+             "priceRange": "$$",
+             "address": {
+                 "@type": "PostalAddress",
+                 "addressLocality": "Vilankulo",
+                 "addressRegion": "Inhambane",
+                 "addressCountry": "MZ"
+                }
+           }
+       ]
+   }
+  </script>
+    
 </head>
 <body>
     
