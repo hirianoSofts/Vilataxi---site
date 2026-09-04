@@ -72,7 +72,7 @@ onAuthStateChanged(auth, async (user) => {
     if (!user) {
 
         window.location.replace(
-            "login/login.html"
+            "/login/"
         );
 
         return;
@@ -200,7 +200,7 @@ if (logoutBtn) {
                 await signOut(auth);
 
                 window.location.replace(
-                    "login/login.html"
+                    "/login/"
                 );
 
             } catch (error) {
@@ -218,4 +218,4 @@ if (logoutBtn) {
         }
     );
 
-}
+        }
