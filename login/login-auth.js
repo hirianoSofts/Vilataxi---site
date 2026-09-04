@@ -163,7 +163,7 @@ if (loginForm) {
                 password
             );
 
-            window.location.replace("../index.html");
+            window.location.replace("../");
 
         } catch (error) {
 
@@ -292,7 +292,7 @@ if (cadastroForm) {
 
             alert("Conta criada com sucesso!");
 
-            window.location.replace("../index.html");
+            window.location.replace("../");
 
 
         } catch (error) {
@@ -396,7 +396,7 @@ try {
         }
 
 
-        window.location.replace("../index.html");
+        window.location.replace("../");
     }
 
 } catch (error) {
