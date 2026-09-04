@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VilaTáxi - Entrar ou Criar conta</title>
+
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css">
+
+    <link rel="stylesheet" href="auth-style.css">
+</head>
+<body>
+
+    <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Alternar tema">
+        <i class="fi fi-rr-moon" id="themeToggleIcon"></i>
+    </button>
+
+    <main class="auth-screen">
+        <div class="auth-card">
+
+            <div class="auth-brand">
+                <span class="logo-badge">V</span>
+                <h1>Vila<strong>Táxi</strong></h1>
+                <p class="auth-tagline" id="authTagline">Entre para continuar a sua viagem</p>
+            </div>
+
+            <div class="auth-tabs" id="authTabs">
+                <button class="auth-tab active" data-tab="login">Entrar</button>
+                <button class="auth-tab" data-tab="cadastro">Criar conta</button>
+            </div>
+
+            <!-- FORMULÁRIO DE LOGIN -->
+            <form class="auth-form active" id="loginForm" autocomplete="off">
+
+                <label class="field-group">
+                    <i class="fi fi-rr-phone-call"></i>
+                    <input
+    type="email"
+    name="loginContact"
+    placeholder="E-mail"
+    autocomplete="email"
+    required
+>
+                </label>
+
+                <label class="field-group">
+                    <i class="fi fi-rr-lock"></i>
+                    <input type="password" name="loginPassword" placeholder="Palavra-passe" required>
+                    <button type="button" class="field-toggle" data-target="loginPassword" aria-label="Mostrar palavra-passe">
+                        <i class="fi fi-rr-eye"></i>
+                    </button>
+                </label>
+
+                <a href="#" class="auth-link auth-link--end">Esqueceu a palavra-passe?</a>
+
+                <button type="submit" class="btn-auth-primary">
+                    Entrar
+                    <i class="fi fi-rr-arrow-right"></i>
+                </button>
+
+                <div class="auth-divider"><span>ou continue com</span></div>
+
+                <div class="social-row">
+                    <button type="button" class="btn-social" id="googleLoginBtn">
+    <i class="fi fi-brands-google"></i>
+    Google
+</button>
+                    <button type="button" class="btn-social">
+                        <i class="fi fi-brands-facebook"></i> Facebook
+                    </button>
+                </div>
+
+                <p class="auth-switch">
+                    Ainda não tem conta?
+                    <button type="button" class="auth-switch-link" data-switch="cadastro">Criar conta</button>
+                </p>
+            </form>
+
+            <!-- FORMULÁRIO DE CADASTRO -->
+            <form class="auth-form" id="cadastroForm" autocomplete="off">
+
+                <label class="field-group">
+                    <i class="fi fi-rr-user"></i>
+                    <input type="text" name="fullName" placeholder="Nome completo" required>
+                </label>
+
+                <label class="field-group">
+                    <i class="fi fi-rr-phone-call"></i>
+                    <input type="tel" name="phone" placeholder="Telefone" required>
+                </label>
+
+                <label class="field-group">
+                    <i class="fi fi-rr-envelope"></i>
+                    <input
+    type="email"
+    name="email"
+    placeholder="E-mail"
+    autocomplete="email"
+    required
+>
+                </label>
+
+                <label class="field-group">
+                    <i class="fi fi-rr-lock"></i>
+                    <input type="password" name="signupPassword" placeholder="Palavra-passe" required>
+                    <button type="button" class="field-toggle" data-target="signupPassword" aria-label="Mostrar palavra-passe">
+                        <i class="fi fi-rr-eye"></i>
+                    </button>
+                </label>
+
+                <label class="field-group">
+                    <i class="fi fi-rr-lock"></i>
+                    <input type="password" name="confirmPassword" placeholder="Confirmar palavra-passe" required>
+                    <button type="button" class="field-toggle" data-target="confirmPassword" aria-label="Mostrar palavra-passe">
+                        <i class="fi fi-rr-eye"></i>
+                    </button>
+                </label>
+
+                <p class="field-error" id="passwordError">As palavras-passe não coincidem.</p>
+
+                <label class="checkbox-row">
+                    <input type="checkbox" name="terms" required>
+                    <span>Aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a></span>
+                </label>
+
+                <button type="submit" class="btn-auth-primary">
+                    Criar conta
+                    <i class="fi fi-rr-arrow-right"></i>
+                </button>
+
+                <p class="auth-switch">
+                    Já tem conta?
+                    <button type="button" class="auth-switch-link" data-switch="login">Entrar</button>
+                </p>
+            </form>
+
+        </div>
+    </main>
+    
+    <script type="module" src="login-auth.js"></script>
+      <script src="auth-script.js"></script>
+</body>
+</html>
