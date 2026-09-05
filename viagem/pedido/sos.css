@@ -1,0 +1,380 @@
+/* ==========================================
+   SOS
+========================================== */
+
+.sos-container {
+
+    position: fixed;
+
+    right: 17px;
+
+    bottom:
+        calc(18px + env(safe-area-inset-bottom));
+
+    z-index: 1800;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+}
+
+
+/* ==========================================
+   BOTÃO SOS
+========================================== */
+
+.sos-button {
+
+    position: relative;
+
+    width: 58px;
+    height: 58px;
+
+    border:
+        3px solid #fff;
+
+    border-radius: 50%;
+
+    background:
+        var(--danger);
+
+    color:
+        #fff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    box-shadow:
+        0 7px 24px rgba(220,38,38,.32);
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.sos-button::before {
+
+    content: '';
+
+    position: absolute;
+
+    inset: -5px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(220,38,38,.25);
+
+    animation:
+        sosPulse 2s infinite;
+
+}
+
+
+@keyframes sosPulse {
+
+    0% {
+
+        transform: scale(.92);
+
+        opacity: .8;
+
+    }
+
+    70% {
+
+        transform: scale(1.18);
+
+        opacity: 0;
+
+    }
+
+    100% {
+
+        transform: scale(1.18);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+.sos-icon {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+}
+
+
+.sos-text {
+
+    font-size: 12px;
+
+}
+
+
+/* ==========================================
+   ESTADO ABERTO
+========================================== */
+
+.sos-container.open
+.sos-button {
+
+    background:
+        var(--primary-green);
+
+    box-shadow:
+        0 7px 24px rgba(12,45,36,.25);
+
+}
+
+
+.sos-container.open
+.sos-button::before {
+
+    display: none;
+
+}
+
+
+/* ==========================================
+   AÇÕES
+========================================== */
+
+.sos-actions {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    margin-bottom: 11px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform:
+        translateY(18px)
+        scale(.94);
+
+    transform-origin:
+        bottom right;
+
+    transition:
+        opacity .22s ease,
+        transform .25s ease;
+
+}
+
+
+.sos-container.open
+.sos-actions {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* ==========================================
+   ITEM SOS
+========================================== */
+
+.sos-action {
+
+    width: 245px;
+
+    min-height: 54px;
+
+    padding:
+        8px 11px;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,.97);
+
+    color:
+        var(--primary-green);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    text-align: left;
+
+    box-shadow:
+        0 7px 25px rgba(0,0,0,.11);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    cursor: pointer;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+
+}
+
+
+.sos-action:active {
+
+    transform:
+        scale(.97);
+
+}
+
+
+/* ==========================================
+   ÍCONE
+========================================== */
+
+.sos-action-icon {
+
+    width: 37px;
+    height: 37px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background:
+        rgba(12,45,36,.08);
+
+    color:
+        var(--primary-green);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+
+}
+
+
+.sos-action > span:last-child {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+}
+
+
+.sos-action small {
+
+    color:
+        var(--text-muted);
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================================
+   EMERGÊNCIA
+========================================== */
+
+.sos-action.emergency {
+
+    border-color:
+        rgba(220,38,38,.15);
+
+}
+
+
+.sos-action.emergency
+.sos-action-icon {
+
+    background:
+        rgba(220,38,38,.10);
+
+    color:
+        var(--danger);
+
+}
+
+
+.sos-action.emergency
+span:last-child {
+
+    color:
+        var(--danger);
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+    .sos-container {
+
+        right: 14px;
+
+        bottom:
+            calc(15px + env(safe-area-inset-bottom));
+
+    }
+
+
+    .sos-action {
+
+        width:
+            min(245px, calc(100vw - 40px));
+
+    }
+
+}
