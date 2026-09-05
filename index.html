@@ -52,6 +52,7 @@
     <link rel="stylesheet" href="estilos/modalselect.css">
     <link rel="stylesheet" href="estilos/footer.css">
     <link rel="stylesheet" href="estilos/cookies.css">
+    <link rel="stylesheet" href="estilos/viagempendente.css">
 
     <!-- SCHEMA.ORG / DADOS ESTRUTURADOS JSON-LD PARA GOOGLE -->
     <script type="application/ld+json">
@@ -163,6 +164,63 @@
             </div>
         </div>
     </header>
+    
+    <!-- ==========================================
+     BARRA DE VIAGENS
+========================================== -->
+
+<div
+    class="trips-bar"
+    id="tripsBar"
+    role="button"
+    tabindex="0"
+    aria-label="Abrir viagens"
+>
+
+    <div class="trips-bar-left">
+
+        <div class="trips-icon">
+            <i class="fi fi-rr-route"></i>
+        </div>
+
+        <div class="trips-info">
+
+            <strong id="tripsTitle">
+                Viagens
+            </strong>
+
+            <span id="tripsSubtitle">
+                Nenhuma viagem
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="trips-bar-right">
+
+        <span
+            class="active-trip-badge"
+            id="activeTripBadge"
+            hidden
+        >
+            <i></i>
+            Viagem activa
+        </span>
+
+        <span
+            class="trips-count"
+            id="tripsCount"
+        >
+            0
+        </span>
+
+        <i class="fi fi-rr-angle-small-right trips-arrow"></i>
+
+    </div>
+
+</div>
 
     <main class="container">
 
@@ -685,6 +743,8 @@
 
     <script src="script.js"></script>
     <script src="scripts/cookies.js"></script>
+    <script src="scripts/viagempendente.js"></script>
+    <script src="scripts/viagens.js"></script>
     
 </body>
 </html>
