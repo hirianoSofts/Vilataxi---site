@@ -17,6 +17,7 @@
         href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
         rel="stylesheet"
     >
+    
 
     <!-- Flaticon -->
     <link
@@ -29,6 +30,9 @@
         rel="stylesheet"
         href="pedirviagem.css"
     >
+    
+    <link rel="stylesheet" href="styles/transporte.css">
+    <link rel="stylesheet" href="styles/aviso.css">
 
 </head>
 
@@ -141,37 +145,55 @@
 
 
             <!-- ==================================
-                 CATEGORIA
+                 TRANSPORTE
             ================================== -->
 
-            <section class="category-card">
+            <div class="vehicle-card">
 
-                <div class="category-icon">
+                <img
+                    id="vehicleImage"
+                    class="vehicle-image"
+                    src=""
+                    alt="Transporte"
+                >
 
-                    <i
-                        id="categoryIcon"
-                        class="fi fi-rr-car-side"
-                    ></i>
+
+                <div class="vehicle-info">
+
+                    <span class="vehicle-label">
+                        TRANSPORTE
+                    </span>
+
+                    <h2 id="vehicleName">
+                        —
+                    </h2>
+
+                    <p id="vehicleDescription">
+                        —
+                    </p>
 
                 </div>
 
 
-                <div class="category-info">
+                <div class="vehicle-price">
 
                     <span>
-                        CATEGORIA SELECIONADA
+                        A partir de
                     </span>
 
-                    <strong id="categoryName">
-                        —
+                    <strong>
+
+                        <span id="vehiclePrice">
+                            —
+                        </span>
+
+                        MZN
+
                     </strong>
 
                 </div>
 
-
-                <i class="fi fi-rr-check category-check"></i>
-
-            </section>
+            </div>
 
 
             <!-- ==================================
@@ -248,6 +270,18 @@
         ====================================== -->
 
         <div class="bottom-actions">
+            
+            <!-- Aviso de privacidade -->
+<div class="driver-notice">
+
+    <i class="fi fi-rr-shield-check"></i>
+
+    <span>
+        Ao clicar em <strong>Continuar</strong>, o motorista será
+        notificado e terá acesso ao seu <strong>nome e contacto</strong>.
+    </span>
+
+</div>
 
             <!-- Promoções -->
 
