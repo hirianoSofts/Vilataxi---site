@@ -1,0 +1,111 @@
+/* ==========================================
+   AVISO SOBRE O MOTORISTA
+========================================== */
+
+.driver-notice {
+
+    position: absolute;
+
+    left: 17px;
+    right: 17px;
+
+    bottom: calc(100% + 8px);
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    padding: 10px 12px;
+
+    background:
+        #F1F4F2;
+
+    border:
+        1px solid rgba(12,45,36,.08);
+
+    border-radius: 13px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 9px;
+
+    line-height: 1.4;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.06);
+
+}
+
+
+.driver-notice i {
+
+    flex-shrink: 0;
+
+    margin-top: 1px;
+
+    color:
+        var(--primary-green);
+
+    font-size: 14px;
+
+}
+
+
+.driver-notice span {
+
+    flex: 1;
+
+}
+
+
+.driver-notice strong {
+
+    color:
+        var(--primary-green);
+
+    font-weight: 900;
+
+}
+
+
+.bottom-actions {
+
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 900;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        10px 17px;
+
+    padding-bottom:
+        calc(10px + env(safe-area-inset-bottom));
+
+    background:
+        rgba(255,255,255,.96);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border-top:
+        1px solid rgba(0,0,0,.05);
+
+    box-shadow:
+        0 -5px 20px rgba(0,0,0,.07);
+
+  }
