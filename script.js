@@ -191,7 +191,7 @@ continueWebsite.addEventListener('click', () => {
     setTimeout(() => {
 
         window.location.href =
-            `viagem/pedirviagem.html?transporte=${encodeURIComponent(vehicle)}`;
+            `/viagem/?transporte=${encodeURIComponent(vehicle)}`;
 
     }, 700);
 
