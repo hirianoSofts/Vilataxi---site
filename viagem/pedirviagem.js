@@ -103,139 +103,176 @@ document.getElementById(
    substituídos pelos dados do Firebase.  
 ========================================== */  
 
-const drivers = [  
+const drivers = [
 
-    {  
-        id: 1,  
+    {
+        id: 1,
 
-        name: 'Carlos Mucavele',  
+        name: 'Carlos Mucavele',
 
-        phone: '258859123456',  
+        phone: '258859123456',
 
-        avatar:  
-            'https://i.pravatar.cc/150?img=12',  
+        avatar:
+            'https://i.pravatar.cc/150?img=12',
 
-        category:  
-            'txopela',  
+        category:
+            'txopela',
 
-        online:  
-            true  
+        online:
+            true,
 
-    },  
+        lat:
+            -22.0067,
 
-
-    {  
-        id: 2,  
-
-        name: 'João Vilanculos',  
-
-        phone: '258841234562',  
-
-        avatar:  
-            'https://i.pravatar.cc/150?img=11',  
-
-        category:  
-            'txopela',  
-
-        online:  
-            true  
-
-    },  
+        lng:
+            35.3214
+    },
 
 
-    {  
-        id: 3,  
+    {
+        id: 2,
 
-        name: 'Manuel Chivambo',  
+        name: 'João Vilanculos',
 
-        phone: '258861234572',  
+        phone: '258841234562',
 
-        avatar:  
-            'https://i.pravatar.cc/150?img=33',  
+        avatar:
+            'https://i.pravatar.cc/150?img=11',
 
-        category:  
-            'txopela',  
+        category:
+            'txopela',
 
-        online:  
-            true  
+        online:
+            true,
 
-    },  
+        lat:
+            -22.0042,
 
-
-    {  
-        id: 4,  
-
-        name: 'António Macamo',  
-
-        phone: '258871234582',  
-
-        avatar:  
-            'https://i.pravatar.cc/150?img=51',  
-
-        category:  
-            'eco',  
-
-        online:  
-            true  
-
-    },  
+        lng:
+            35.3198
+    },
 
 
-    {  
-        id: 5,  
+    {
+        id: 3,
 
-        name: 'Fernando Matsinhe',  
+        name: 'Manuel Chivambo',
 
-        phone: '258821234592',  
+        phone: '258861234572',
 
-        avatar:  
-            'https://i.pravatar.cc/150?img=68',  
+        avatar:
+            'https://i.pravatar.cc/150?img=33',
 
-        category:  
-            'eco',  
+        category:
+            'txopela',
 
-        online:  
-            true  
+        online:
+            true,
 
-    },  
+        lat:
+            -22.0091,
 
-
-    {  
-        id: 6,  
-
-        name: 'Edson Nhancale',  
-
-        phone: '258851234562',  
-
-        avatar:  
-            'https://i.pravatar.cc/150?img=59',  
-
-        category:  
-            'moto',  
-
-        online:  
-            true  
-
-    },  
+        lng:
+            35.3245
+    },
 
 
-    {  
-        id: 7,  
+    {
+        id: 4,
 
-        name: 'Nelson Chongo',  
+        name: 'António Macamo',
 
-        phone: '258841234572',  
+        phone: '258871234582',
 
-        avatar:  
-            'https://i.pravatar.cc/150?img=14',  
+        avatar:
+            'https://i.pravatar.cc/150?img=51',
 
-        category:  
-            'moto',  
+        category:
+            'eco',
 
-        online:  
-            true  
+        online:
+            true,
 
-    }  
+        lat:
+            -22.0112,
+
+        lng:
+            35.3177
+    },
+
+
+    {
+        id: 5,
+
+        name: 'Fernando Matsinhe',
+
+        phone: '258821234592',
+
+        avatar:
+            'https://i.pravatar.cc/150?img=68',
+
+        category:
+            'eco',
+
+        online:
+            true,
+
+        lat:
+            -22.0029,
+
+        lng:
+            35.3261
+    },
+
+
+    {
+        id: 6,
+
+        name: 'Edson Nhancale',
+
+        phone:
+            '258851234562',
+
+        avatar:
+            'https://i.pravatar.cc/150?img=59',
+
+        category:
+            'moto',
+
+        online:
+            true,
+
+        lat:
+            -22.0078,
+
+        lng:
+            35.3169
+    },
+
+
+    {
+        id: 7,
+
+        name: 'Nelson Chongo',
+
+        phone:
+            '258841234572',
+
+        avatar:
+            'https://i.pravatar.cc/150?img=14',
+
+        category:
+            'moto',
+
+        online:
+            true,
+
+        lat:
+            -22.0135,
+
+        lng:
+            35.3228
+    }
 
 ];  
   
@@ -330,6 +367,29 @@ const closeIosNotice =
     document.getElementById(  
         'closeIosNotice'  
     );  
+    
+    const autoDriverButton =
+    document.getElementById(
+        'autoDriverButton'
+    );
+
+
+const driverLocation =
+    document.getElementById(
+        'driverLocation'
+    );
+
+
+const driverCoordinates =
+    document.getElementById(
+        'driverCoordinates'
+    );
+
+
+const copyCoordinates =
+    document.getElementById(
+        'copyCoordinates'
+    );
 
 
 /* ==========================================  
@@ -510,90 +570,426 @@ function createDriverCard(driver) {
 }  
 
 
+/* ==========================================
+   SELECIONAR MOTORISTA
+========================================== */
+
+function selectDriver(
+    driver,
+    card,
+    button,
+    automatic = false
+) {
+
+    document
+        .querySelectorAll(
+            '.driver-card'
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    'selected'
+                );
+
+                item.classList.remove(
+                    'auto-selected'
+                );
+
+
+                const itemButton =
+                    item.querySelector(
+                        '.choose-driver'
+                    );
+
+
+                if (itemButton) {
+
+                    itemButton.classList.remove(
+                        'selected'
+                    );
+
+
+                    itemButton.innerHTML = `
+
+                        <i class="fi fi-rr-check"></i>
+
+                        Escolher
+
+                    `;
+
+                }
+
+            }
+        );
+
+
+    selectedDriver =
+        driver;
+
+
+    card.classList.add(
+        'selected'
+    );
+
+
+    if (automatic) {
+
+        card.classList.add(
+            'auto-selected'
+        );
+
+    }
+
+
+    button.classList.add(
+        'selected'
+    );
+
+
+    button.innerHTML = `
+
+        <i class="fi fi-rr-check"></i>
+
+        Selecionado
+
+    `;
+
+
+    /* ======================================
+       ATUALIZAR LOCALIZAÇÃO
+    ====================================== */
+
+    updateDriverLocation(
+        driver
+    );
+
+
+    /* ======================================
+       ATIVAR CONTINUAR
+    ====================================== */
+
+    continueButton.disabled =
+        false;
+
+
+    continueButton.querySelector(
+        'span'
+    ).textContent =
+        `Continuar com ${driver.name.split(' ')[0]}`;
+
+}
+
+/* ==========================================
+   SELEÇÃO AUTOMÁTICA
+========================================== */
+
+function autoSelectDriver() {
+
+    if (
+        availableDrivers.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    /* ======================================
+       BLOQUEAR BOTÃO DURANTE A ANIMAÇÃO
+    ====================================== */
+
+    autoDriverButton.disabled =
+        true;
+
+    autoDriverButton.classList.add(
+        'auto-searching'
+    );
+
+
+    const autoText =
+        autoDriverButton.querySelector(
+            'span'
+        );
+
+
+    const autoIcon =
+        autoDriverButton.querySelector(
+            'i'
+        );
+
+
+    autoText.textContent =
+        'A procurar';
+
+
+    autoIcon.className =
+        'fi fi-rr-bolt';
+
+
+
+    /* ======================================
+       LIMPAR SELEÇÃO ANTERIOR
+    ====================================== */
+
+    document
+        .querySelectorAll(
+            '.driver-card'
+        )
+        .forEach(
+            card => {
+
+                card.classList.remove(
+                    'selected'
+                );
+
+                card.classList.remove(
+                    'auto-selected'
+                );
+
+            }
+        );
+
+
+
+    /* ======================================
+       ANIMAÇÃO DOS MOTORISTAS
+    ====================================== */
+
+    const cards =
+        Array.from(
+            document.querySelectorAll(
+                '.driver-card'
+            )
+        );
+
+
+    cards.forEach(
+        (card, index) => {
+
+            setTimeout(
+                () => {
+
+                    card.classList.add(
+                        'auto-scanning'
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            card.classList.remove(
+                                'auto-scanning'
+                            );
+
+                        },
+                        450
+                    );
+
+                },
+                index * 180
+            );
+
+        }
+    );
+
+
+
+    /* ======================================
+       ESCOLHER MOTORISTA
+       
+       Aqui usamos o primeiro disponível.
+       Depois podemos substituir por:
+       motorista mais próximo,
+       menor preço, melhor avaliação etc.
+    ====================================== */
+
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            availableDrivers.length
+        );
+
+
+    const chosenDriver =
+        availableDrivers[randomIndex];
+
+
+    const chosenCard =
+        document.querySelector(
+            `.driver-card[data-id="${chosenDriver.id}"]`
+        );
+
+
+    if (!chosenCard) {
+
+        autoDriverButton.disabled =
+            false;
+
+        autoDriverButton.classList.remove(
+            'auto-searching'
+        );
+
+        autoText.textContent =
+            'AUTO';
+
+        return;
+
+    }
+
+
+    const chosenButton =
+        chosenCard.querySelector(
+            '.choose-driver'
+        );
+
+
+
+    /* ======================================
+       FINALIZAR ANIMAÇÃO
+    ====================================== */
+
+    setTimeout(
+        () => {
+
+            selectDriver(
+                chosenDriver,
+                chosenCard,
+                chosenButton,
+                true
+            );
+
+
+            chosenCard.scrollIntoView({
+                behavior:
+                    'smooth',
+
+                block:
+                    'center'
+            });
+
+
+            autoText.textContent =
+                'AUTO';
+
+
+            autoIcon.className =
+                'fi fi-rr-check';
+
+
+            setTimeout(
+                () => {
+
+                    autoDriverButton.classList.remove(
+                        'auto-searching'
+                    );
+
+
+                    autoDriverButton.disabled =
+                        false;
+
+
+                    autoIcon.className =
+                        'fi fi-rr-bolt';
+
+                },
+                900
+            );
+
+        },
+        Math.max(
+            800,
+            cards.length * 180
+        )
+    );
+
+}
+
+/* ==========================================
+   BOTÃO AUTO
+========================================== */
+
+autoDriverButton.addEventListener(
+    'click',
+    autoSelectDriver
+);
+
+/* ==========================================
+   COPIAR COORDENADAS
+========================================== */
+
+copyCoordinates.addEventListener(
+    'click',
+    async () => {
+
+        if (
+            !selectedDriver ||
+            typeof selectedDriver.lat !== 'number' ||
+            typeof selectedDriver.lng !== 'number'
+        ) {
+
+            return;
+
+        }
+
+
+        const coordinates =
+            `${selectedDriver.lat.toFixed(6)}, ${selectedDriver.lng.toFixed(6)}`;
+
+
+        try {
+
+            await navigator.clipboard.writeText(
+                coordinates
+            );
+
+
+            copyCoordinates.classList.add(
+                'copied'
+            );
+
+
+            copyCoordinates.innerHTML = `
+
+                <i class="fi fi-rr-check"></i>
+
+            `;
+
+
+            setTimeout(
+                () => {
+
+                    copyCoordinates.classList.remove(
+                        'copied'
+                    );
+
+
+                    copyCoordinates.innerHTML = `
+
+                        <i class="fi fi-rr-copy"></i>
+
+                    `;
+
+                },
+                1600
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                'Erro ao copiar coordenadas:',
+                error
+            );
+
+        }
+
+    }
+);
+
+
 /* ==========================================  
-   SELECIONAR MOTORISTA  
-========================================== */  
-
-function selectDriver(  
-    driver,  
-    card,  
-    button  
-) {  
-
-    document  
-        .querySelectorAll(  
-            '.driver-card'  
-        )  
-        .forEach(  
-            item => {  
-
-                item.classList.remove(  
-                    'selected'  
-                );  
-
-                const itemButton =  
-                    item.querySelector(  
-                        '.choose-driver'  
-                    );  
-
-
-                if (itemButton) {  
-
-                    itemButton.classList.remove(  
-                        'selected'  
-                    );  
-
-                    itemButton.innerHTML = `  
-
-                        <i class="fi fi-rr-check"></i>  
-
-                        Escolher  
-
-                    `;  
-
-                }  
-
-            }  
-        );  
-
-
-    selectedDriver =  
-        driver;  
-
-
-    card.classList.add(  
-        'selected'  
-    );  
-
-
-    button.classList.add(  
-        'selected'  
-    );  
-
-
-    button.innerHTML = `  
-
-        <i class="fi fi-rr-check"></i>  
-
-        Selecionado  
-
-    `;  
-
-
-    continueButton.disabled =  
-        false;  
-
-
-    continueButton.querySelector(  
-        'span'  
-    ).textContent =  
-        `Continuar com ${driver.name.split(' ')[0]}`;  
-
-}  
-
-
-/* ==========================================  
-   MOSTRAR MOTORISTAS  
+   MOSTRAR MOTORISTAS  :
 ========================================== */  
 
 function renderDrivers() {  
