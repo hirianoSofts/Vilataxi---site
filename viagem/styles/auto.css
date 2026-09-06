@@ -1,0 +1,349 @@
+/* ==========================================
+   BOTÃO AUTO
+========================================== */
+
+.auto-driver-button {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    height: 32px;
+
+    padding: 0 11px;
+
+    border: 1px solid rgba(229,178,24,.35);
+
+    border-radius: 11px;
+
+    background:
+        rgba(229,178,24,.10);
+
+    color:
+        var(--primary-green);
+
+    font-family:
+        inherit;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: .4px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.auto-driver-button i {
+
+    font-size: 12px;
+
+    color:
+        var(--accent-yellow);
+
+}
+
+
+.auto-driver-button:active {
+
+    transform:
+        scale(.94);
+
+}
+
+
+/* ==========================================
+   AUTO A SELECIONAR
+========================================== */
+
+.auto-driver-button.auto-searching {
+
+    background:
+        var(--primary-green);
+
+    color:
+        #fff;
+
+    border-color:
+        var(--primary-green);
+
+    box-shadow:
+        0 5px 18px rgba(12,45,36,.18);
+
+}
+
+
+.auto-driver-button.auto-searching i {
+
+    color:
+        var(--accent-yellow);
+
+    animation:
+        autoBolt .7s linear infinite;
+
+}
+
+
+@keyframes autoBolt {
+
+    0% {
+
+        transform:
+            rotate(0deg)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            rotate(15deg)
+            scale(1.25);
+
+    }
+
+    100% {
+
+        transform:
+            rotate(0deg)
+            scale(1);
+
+    }
+
+}
+
+
+/* ==========================================
+   LOCALIZAÇÃO
+========================================== */
+
+.driver-location-info {
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+.driver-location-info span {
+
+    display: block;
+
+    font-size: 7px;
+
+    color:
+        var(--text-muted);
+
+    font-weight: 900;
+
+    letter-spacing: .5px;
+
+}
+
+
+.driver-location-info strong {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+}
+
+
+.driver-location-info small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* ==========================================
+   COPIAR COORDENADAS
+========================================== */
+
+.copy-coordinates {
+
+    width: 34px;
+
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 10px;
+
+    background:
+        #fff;
+
+    color:
+        var(--primary-green);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        transform .15s ease,
+        background .2s ease;
+
+}
+
+
+.copy-coordinates i {
+
+    font-size: 13px;
+
+}
+
+
+.copy-coordinates:active {
+
+    transform:
+        scale(.90);
+
+}
+
+
+.copy-coordinates.copied {
+
+    background:
+        var(--primary-green);
+
+    color:
+        #fff;
+
+}
+
+
+/* ==========================================
+   ANIMAÇÃO AUTO NOS CARDS
+========================================== */
+
+.driver-card.auto-scanning {
+
+    animation:
+        autoScan .45s ease;
+
+}
+
+
+@keyframes autoScan {
+
+    0% {
+
+        transform:
+            scale(.985);
+
+        opacity:
+            .55;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.015);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+/* ==========================================
+   MOTORISTA ESCOLHIDO AUTOMATICAMENTE
+========================================== */
+
+.driver-card.auto-selected {
+
+    animation:
+        autoSelected .7s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+@keyframes autoSelected {
+
+    0% {
+
+        transform:
+            scale(.96);
+
+        box-shadow:
+            0 0 0 0 rgba(12,45,36,.25);
+
+    }
+
+    55% {
+
+        transform:
+            scale(1.025);
+
+        box-shadow:
+            0 0 0 8px rgba(12,45,36,.06);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+        box-shadow:
+            0 5px 18px rgba(12,45,36,.09);
+
+    }
+
+}
